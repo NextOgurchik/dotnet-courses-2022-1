@@ -49,7 +49,7 @@ namespace Task1
             }
 
             var rect = new Rectangle(a, b);
-            var s = rect.Width > 0 && rect.Height > 0 ? $"Площадь прямоугольника со сторонами {rect.Width} и {rect.Height} равна {rect.Area()}."
+            var s = rect.Width > 0 && rect.Height > 0 ? $"{rect.Area()}"
                 : "Ошибка! Все стороны прямоугольника должны быть больше 0.";
             Console.WriteLine(s);
         }

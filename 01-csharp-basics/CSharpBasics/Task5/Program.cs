@@ -18,10 +18,8 @@ namespace Task5
         }
         static void Main(string[] args)
         {
-            Console.WriteLine("Программа для вывода суммы чисел, кратных 3 или 5");
-            Console.Write("Введите максимальное натуральное число: ");
-            Int32.TryParse(Console.ReadLine(), out int c);
-            Console.WriteLine($"Сумма чисел меньших {c}, кратных 3 или 5 равна {SumMultiples3or5(c)}");
+            Console.WriteLine("Программа для вывода суммы всех чисел меньше 1000, кратных 3 или 5.");
+            Console.WriteLine(SumMultiples3or5(1000));
         }
     }
 }
