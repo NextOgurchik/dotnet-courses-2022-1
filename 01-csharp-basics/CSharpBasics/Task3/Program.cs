@@ -10,7 +10,10 @@ namespace Task3
             int charCount = 1;
             for (int i = 0; i < rowCount; i++)
             {
-                Console.CursorLeft = rowCount - i - 1;
+                for (int l = 0; l < rowCount-i-1; l++)
+                {
+                    Console.Write(' ');
+                }
                 for (int j = 0; j < charCount; j++)
                 {
                     Console.Write(PointChar);

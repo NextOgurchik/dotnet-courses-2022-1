@@ -12,7 +12,10 @@ namespace Task4
                 int charCount = 1;
                 for (int j = 0; j < i; j++)//Строки
                 {
-                    Console.CursorLeft = triangleCount - j;
+                    for (int l = 0; l < triangleCount - j; l++)
+                    {
+                        Console.Write(' ');
+                    }
                     for (int k = 0; k < charCount; k++)//Символы
                     {
                         Console.Write(PointChar);
