@@ -76,8 +76,9 @@ namespace Task1
             var arr = GenerateArray();
             Console.WriteLine("Массив, заполненый случайными значениями:");
             Console.WriteLine(PrintArray(arr));
+            SortAndGetMinAndMaxValues(arr, out min, out max);
             Console.WriteLine("Отсортированный массив:");
-            Console.WriteLine(PrintArray(SortAndGetMinAndMaxValues(arr, out min, out max)));
+            Console.WriteLine(PrintArray(arr));
             Console.WriteLine($"Минимальное значение в массиве: {min}");
             Console.WriteLine($"Максимальное значение в массиве: {max}");
         }
