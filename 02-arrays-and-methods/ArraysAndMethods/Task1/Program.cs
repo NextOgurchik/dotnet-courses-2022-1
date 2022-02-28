@@ -61,24 +61,23 @@ namespace Task1
             }
             return max;
         }
-        public static string PrintArray(int[] array)
+        public static void PrintArray(int[] array)
         {
             var s = "";
             for (int i = 0; i < array.GetLength(0); i++)
             {
-                s += $"{array[i]}\n";
+                Console.WriteLine(array[i]);
             }
-            return s;
         }
         static void Main(string[] args)
         {
             int min, max;
             var arr = GenerateArray();
             Console.WriteLine("Массив, заполненый случайными значениями:");
-            Console.WriteLine(PrintArray(arr));
+            PrintArray(arr);
             SortAndGetMinAndMaxValues(arr, out min, out max);
             Console.WriteLine("Отсортированный массив:");
-            Console.WriteLine(PrintArray(arr));
+            PrintArray(arr);
             Console.WriteLine($"Минимальное значение в массиве: {min}");
             Console.WriteLine($"Максимальное значение в массиве: {max}");
         }
