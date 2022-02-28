@@ -12,7 +12,7 @@ namespace Task4
                 int charCount = 1;
                 for (int j = 0; j < i; j++)//Строки
                 {
-                    for (int l = 0; l < triangleCount - j; l++)
+                    for (int l = 0; l < triangleCount - j - 1; l++)
                     {
                         Console.Write(' ');
                     }
