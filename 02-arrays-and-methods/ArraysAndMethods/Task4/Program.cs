@@ -1,24 +1,56 @@
 ﻿using System;
-using ClassLibrary;
 
 namespace Task4
 {
     internal class Program
     {
+        public static int[,] GenerateArray()
+        {
+           var array = new int[4, 4];
+           var rnd = new Random();
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    array[i, j] = rnd.Next(-10, 10);
+                }
+            }
+            return array;
+        }
+        public static int GetSumOfElementsOnEvenPositions(int [,] array)
+        {
+            int sum = 0;
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    if ((i + j) % 2 == 0)
+                    {
+                        sum += array[i, j];
+                    }
+                }
+            }
+            return sum;
+        }
+
+        public static string PrintArray(int[,] array)
+        {
+            var s = "Массив:";
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                s += "\n";
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    s += $"{array[i, j]} ";
+                }
+            }
+            return s;
+        }
         static void Main(string[] args)
         {
-            Console.Write("Введите количество строк: ");
-            Int32.TryParse(Console.ReadLine(), out int n);
-            Console.Write("Введите количество столбцов: ");
-            Int32.TryParse(Console.ReadLine(), out int m);
-            Console.Write("Введите нижнюю границу случайных чисел: ");
-            Int32.TryParse(Console.ReadLine(), out int b1);
-            Console.Write("Введите верхнюю границу случайных чисел: ");
-            Int32.TryParse(Console.ReadLine(), out int b2);
-            var arr = new Array2(new int[n, m]);
-            arr.GenerateArray(b1, b2);
-            Console.WriteLine(arr);
-            Console.WriteLine($"Сумма элементов массива, стоящих на чётных позициях: {arr.GetSumOfElementsOnEvenPositions()}");
+            var arr = GenerateArray();
+            Console.WriteLine(PrintArray(arr));
+            Console.WriteLine($"Сумма элементов массива, стоящих на чётных позициях: {GetSumOfElementsOnEvenPositions(arr)}");
         }
     }
 }

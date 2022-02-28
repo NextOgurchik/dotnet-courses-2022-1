@@ -1,23 +1,47 @@
 ﻿using System;
-using ClassLibrary;
 
 namespace Task3
 {
     internal class Program
     {
+        public static int[] GenerateArray()
+        {
+            var array = new int[10];
+            var rnd = new Random();
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                array[i] = rnd.Next(-10, 10);
+            }
+            return array;
+        }
+        public static int GetSumOfNonNegativeElements(int[] array)
+        {
+            int sum = 0;
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                if (array[i] > 0)
+                {
+                    sum += array[i];
+                }
+            }
+            return sum;
+        }
+        public static string PrintArray(int[] array)
+        {
+            var s = "";
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                s += $"{array[i]}\n";
+            }
+            return s;
+        }
+
         static void Main(string[] args)
         {
-            Console.Write("Введите количество элементов массива: ");
-            Int32.TryParse(Console.ReadLine(), out int n);
-            Console.Write("Введите нижнюю границу случайных чисел: ");
-            Int32.TryParse(Console.ReadLine(), out int b1);
-            Console.Write("Введите верхнюю границу случайных чисел: ");
-            Int32.TryParse(Console.ReadLine(), out int b2);
-            var arr = new Array1(new int[n]);
-            arr.GenerateArray(b1, b2);
+            var arr = GenerateArray();
             Console.WriteLine("Массив, заполненый случайными значениями:");
-            Console.WriteLine(arr);
-            Console.WriteLine($"Сумма неотрицательных элементов: {arr.GetSumOfNonNegativeElements()}");
+            Console.WriteLine(PrintArray(arr));
+            Console.WriteLine($"Сумма неотрицательных элементов: {GetSumOfNonNegativeElements(arr)}");
         }
     }
 }
