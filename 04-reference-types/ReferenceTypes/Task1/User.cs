@@ -4,9 +4,12 @@ namespace Task1
 {
     internal class User
     {
-        public string Name { get; set; }
-        public string LastName { get; set; }
-        public string Patronymic { get; set; }
+        private string name;
+        public string Name { get => name; private set { name = string.Empty == value ? value : throw new Exception(); } }
+        private string lastName;
+        public string LastName { get => lastName; private set { lastName = string.Empty == value ? value : throw new Exception(); } }
+        private string patronymic;
+        public string Patronymic { get => patronymic; private set { patronymic = string.Empty == value ? value : throw new Exception(); } }
         private DateTime dateOfBirth;
         public DateTime DateOfBirth
         {
