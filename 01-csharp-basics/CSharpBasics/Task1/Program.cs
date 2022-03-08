@@ -12,14 +12,14 @@ namespace Task1
             while (!isOk)
             {
                 Console.Write("Введите длину одной стороны прямоугольника: ");
-                if (Int32.TryParse(Console.ReadLine(), out a))
+                if (int.TryParse(Console.ReadLine(), out a))
                 {
                     if (a > 0)
                     {
                         while (b < 1)
                         {
                             Console.Write("Введите длину другой стороны прямоугольника: ");
-                            if (Int32.TryParse(Console.ReadLine(), out b))
+                            if (int.TryParse(Console.ReadLine(), out b))
                             {
                                 if (b > 0)
                                 {

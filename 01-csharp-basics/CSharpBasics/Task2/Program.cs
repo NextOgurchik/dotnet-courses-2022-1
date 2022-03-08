@@ -24,12 +24,12 @@ namespace Task2
             while (!isOk) 
             {
                 Console.Write("Введите количество строк: ");
-                isOk = Int32.TryParse(Console.ReadLine(), out c);
+                isOk = int.TryParse(Console.ReadLine(), out c);
                 if (!isOk)
                 {
                     Console.WriteLine("Ошибка! Введите число.");
                 }
-                if (c < 1 && isOk) 
+                else if (c < 1) 
                 {
                     Console.WriteLine("Ошибка! Число должно быть больше 0.");
                     isOk = false;

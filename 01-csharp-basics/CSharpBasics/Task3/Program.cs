@@ -5,6 +5,7 @@ namespace Task3
     internal class Program
     {
         private const char PointChar = '*';
+        private const char SpaceChar = ' ';
         private static void DrawPoints(int rowCount)
         {
             int charCount = 1;
@@ -12,7 +13,7 @@ namespace Task3
             {
                 for (int l = 0; l < rowCount-i-1; l++)
                 {
-                    Console.Write(' ');
+                    Console.Write(SpaceChar);
                 }
                 for (int j = 0; j < charCount; j++)
                 {

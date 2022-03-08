@@ -41,7 +41,8 @@ namespace Task2
             var s = "Массив:";
             for (int i = 0; i < array.GetLength(0); i++)
             {
-                s += "\n";
+                s += Environment.NewLine;
+
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
                     s += "{ ";
