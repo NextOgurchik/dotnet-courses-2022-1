@@ -38,14 +38,14 @@ namespace Task4
 			StringAddition();
 			watch.Stop();
 			number = Convert.ToDouble(watch.ElapsedMilliseconds) / 1000;
-			Console.WriteLine("String: " + number);
+			Console.WriteLine("String: [" + number + "]");
 
 			watch = new Stopwatch();
 			watch.Start();
 			StringBuilderAddition();
 			watch.Stop();
 			number = Convert.ToDouble(watch.ElapsedMilliseconds) / 1000;
-			Console.WriteLine("StringBuilder: " + number);
+			Console.WriteLine("StringBuilder: [" + number + "]");
 		}
 	}
 }
