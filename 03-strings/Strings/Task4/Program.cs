@@ -29,9 +29,6 @@ namespace Task4
 		}
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Программа для анализа скорости работы классов String и StringBuilder для операции сложения");
-			Console.WriteLine("Скорость сложения строки " + iterations + " раз");
-
 			double number;
 			var watch = new Stopwatch();
 			watch.Start();
@@ -39,7 +36,6 @@ namespace Task4
 			watch.Stop();
 			number = Convert.ToDouble(watch.ElapsedMilliseconds) / 1000;
 			Console.WriteLine("String: [" + number + "]");
-
 			watch = new Stopwatch();
 			watch.Start();
 			StringBuilderAddition();
