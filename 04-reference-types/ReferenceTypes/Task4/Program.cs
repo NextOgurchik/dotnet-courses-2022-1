@@ -20,12 +20,12 @@ namespace Task4
             var charString2 = new MyString(myChar2);
             var charString3 = charString1 + charString2;
             var charString4 = charString1 - charString2;
+            Console.WriteLine(charString5);
+            Console.WriteLine(charString6);
             Console.WriteLine($"Сложение массивов: {charString3}");
             Console.WriteLine($"Вычитание массивов: {charString4}");
             string c = charString1 == charString2 ? "Элементы массивов одинаковые" : "Элементы массивов неодинаковые";
             Console.WriteLine(c);
-            Console.Write("Для продолжения нажмите любую клавишу...");
-            Console.ReadKey();
         }
     }
 }

@@ -4,43 +4,67 @@ namespace Task3
 {
     class Triangle
     {
-        private double side1;
-        public double Side1
+        private double a;
+        public double A
         {
-            get => side1;
-            set => side1 = value > 0 ? value : throw new Exception("Side cannot be less than zero.");
+            get => a;
+            set
+            {
+                if (((a + b > c) && (a + c > b) && (b + c > a)) != true)
+                {
+                    throw new Exception("Triangle does not exist.");
+                }
+                a = value > 0 ? value : throw new Exception("Side cannot be less than zero.");
+
+            }
         }
-        private double side2;
-        public double Side2
+        private double b;
+        public double B
         {
-            get => side2;
-            set => side2 = value > 0 ? value : throw new Exception("Side cannot be less than zero.");
+            get => b;
+            set
+            {
+                if (((a + b > c) && (a + c > b) && (b + c > a)) != true)
+                {
+                    throw new Exception("Triangle does not exist.");
+                }
+                b = value > 0 ? value : throw new Exception("Side cannot be less than zero.");
+
+            }
         }
-        private double side3;
-        public double Side3
+        private double c;
+        public double C
         {
-            get => side3;
-            set => side3 = value > 0 ? value : throw new Exception("Side cannot be less than zero.");
+            get => c;
+            set 
+            {
+                if (((a + b > c) && (a + c > b) && (b + c > a)) != true)
+                {
+                    throw new Exception("Triangle does not exist.");
+                }
+                c = value > 0 ? value : throw new Exception("Side cannot be less than zero.");
+                
+            }
         }
-        public Triangle(double side1, double side2, double side3)
+        public Triangle(int a, int b, int c)
         {
-            Side1 = side1;
-            Side2 = side2;
-            Side3 = side3;
+            A = a;
+            B = b;
+            C = c;
         }
-        public double GetLength()
+        public double GetPerimeter()
         {
-            return Side1 + Side2 + Side3;
+            return A + B + C;
         }
         public double GetArea()
         {
-            double p = GetLength() / 2;
-            return Math.Sqrt(p * (p - Side1) * (p - Side2) * (p - Side3));
+            double p = GetPerimeter() / 2;
+            return Math.Sqrt(p * (p - A) * (p - B) * (p - C));
         }
         public override string ToString()
         {
-            return $"Треугольник. Сторона a = {Side1}. Сторона b = {Side2}. Сторона c = {Side3}." +
-                $" Периметр = {GetLength()}. Площадь = {Math.Round(GetArea(), 2)}.";
+            return $"Треугольник. Сторона a = {A}. Сторона b = {B}. Сторона c = {C}." +
+                $" Периметр = {GetPerimeter()}. Площадь = {Math.Round(GetArea(), 2)}.";
         }
     }
 }

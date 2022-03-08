@@ -4,7 +4,12 @@ namespace Task2
 {
     class Round
     {
-        public Point Center { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public double Circumference 
+        { 
+            get => 2 * Math.PI * radius;
+        }
         private double radius;
         public double Radius
         {
@@ -12,21 +17,19 @@ namespace Task2
             set
             {
                 radius = value > 0 ? value : throw new Exception("Radius cannot be less than zero.");
-                Length = 2 * Math.PI * radius;
-                Area = Math.PI * radius * radius;
             }
         }
-        public double Length { get; private set; }
-        public double Area { get; private set; }
-        public Round(Point centerPoint, double radius)
+        public double Area { get => Math.PI * radius * radius; }
+        public Round(int x, int y, double radius)
         {
-            Center = centerPoint;
+            X = x;
+            Y = y;
             Radius = radius;
         }
         public override string ToString()
         {
-            return $"Координаты X = {Center.X} Y = {Center.Y}. Радиус = {Radius}. " +
-                $"Длина окружности = {Math.Round(Length, 2)}. Площадь окружности = {Math.Round(Area, 2)}.";
+            return $"Координаты X = {X}. Y = {Y}. Радиус = {Radius}. " +
+                $"Длина окружности = {Circumference}. Площадь окружности = {Area}.";
         }
     }
 }

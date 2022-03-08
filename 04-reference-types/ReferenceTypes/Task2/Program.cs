@@ -15,10 +15,8 @@ namespace Task2
             Console.Write("Введите радиус: ");
             Double.TryParse(Console.ReadLine(), out r);
             var p = new Point(x, y);
-            var round = new Round(p, r);
+            var round = new Round(p.X, p.Y, r);
             Console.WriteLine(round);
-            Console.Write("Для продолжения нажмите любую клавишу...");
-            Console.ReadKey();
         }
     }
 }

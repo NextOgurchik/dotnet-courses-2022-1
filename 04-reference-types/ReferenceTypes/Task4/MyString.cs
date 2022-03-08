@@ -6,6 +6,18 @@ namespace Task4
     {
         public char[] CharString { get; set; }
 
+        public MyString()
+        {
+            CharString = new char[0];
+        }
+        public MyString(string charString)
+        {
+            CharString = new char[charString.Length];
+            for (int i = 0; i < charString.Length; i++)
+            {
+                CharString[i] = charString[i];
+            }
+        }
         public MyString(char[] charString)
         {
             CharString = charString;

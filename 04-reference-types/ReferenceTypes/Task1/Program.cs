@@ -18,8 +18,6 @@ namespace Task1
             doB = Convert.ToDateTime(Console.ReadLine());
             var user = new User(fname, sname, patr, doB);
             Console.WriteLine(user);
-            Console.Write("Для продолжения нажмите любую клавишу...");
-            Console.ReadKey();
         }
     }
 }
