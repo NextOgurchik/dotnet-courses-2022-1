@@ -31,8 +31,6 @@ namespace Task2
             string s2 = Console.ReadLine();
             Console.WriteLine("Текст 1: " + s1 + "\nТекст 2: " + s2);
             Console.WriteLine("Результат: " + DoublingCharacters(s1, s2));
-            Console.Write("Для продолжения нажмите любую клавишу...");
-            Console.ReadKey();
         }
     }
 }

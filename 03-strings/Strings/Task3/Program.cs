@@ -37,8 +37,6 @@ namespace Task3
             Console.Write("Введите второй формат: ");
             string c2 = Console.ReadLine();
             СulturesDiff(c1, c2);
-            Console.Write("Для продолжения нажмите любую клавишу...");
-            Console.ReadKey();
         }
     }
 }

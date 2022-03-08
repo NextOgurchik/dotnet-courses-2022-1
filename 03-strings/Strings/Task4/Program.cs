@@ -46,9 +46,6 @@ namespace Task4
 			watch.Stop();
 			sec = Convert.ToDouble(watch.ElapsedMilliseconds) / 1000;
 			Console.WriteLine("Через StringBuilder: " + sec + " сек");
-
-			Console.Write("Для продолжения нажмите любую клавишу...");
-			Console.ReadKey();
 		}
 	}
 }

@@ -22,8 +22,6 @@ namespace Task5
             Console.WriteLine("Исходный текст: " + s);
             RemoveTags(ref s);
             Console.WriteLine("Текст без тегов: " + s);
-            Console.Write("Для продолжения нажмите любую клавишу...");
-            Console.ReadKey();
         }
     }
 }
