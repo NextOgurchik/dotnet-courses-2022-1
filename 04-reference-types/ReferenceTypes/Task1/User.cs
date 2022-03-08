@@ -11,7 +11,10 @@ namespace Task1
         public DateTime DateOfBirth
         {
             get => dateOfBirth;
-            set => dateOfBirth = DateTime.Now >= value ? value : throw new Exception("User hasn't been born yet.");
+            private set
+            {
+                dateOfBirth = DateTime.Now >= value ? value : throw new Exception("User hasn't been born yet.");
+            }
         }
 
         public User(string firstName, string lastName, string pastronymic, DateTime dateOfBirth)

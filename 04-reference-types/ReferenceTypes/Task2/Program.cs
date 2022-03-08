@@ -8,12 +8,12 @@ namespace Task2
         {
             int x, y;
             double r;
+            Console.Write("Введите радиус: ");
+            Double.TryParse(Console.ReadLine(), out r);
             Console.Write("Введите координату X: ");
             Int32.TryParse(Console.ReadLine(), out x);
             Console.Write("Введите координату Y: ");
             Int32.TryParse(Console.ReadLine(), out y);
-            Console.Write("Введите радиус: ");
-            Double.TryParse(Console.ReadLine(), out r);
             var p = new Point(x, y);
             var round = new Round(r, p.X, p.Y);
             Console.WriteLine(round);

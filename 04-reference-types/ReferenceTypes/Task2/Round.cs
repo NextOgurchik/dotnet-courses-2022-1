@@ -14,7 +14,7 @@ namespace Task2
         public double Radius
         {
             get => radius;
-            set
+            private set
             {
                 radius = value > 0 ? value : throw new Exception("Radius cannot be less than zero.");
             }
