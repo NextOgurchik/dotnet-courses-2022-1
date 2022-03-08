@@ -4,9 +4,9 @@ namespace Task1
 {
     internal class User
     {
-        public string FirstName { get; set; }
+        public string Name { get; set; }
         public string LastName { get; set; }
-        public string Pastronymic { get; set; }
+        public string Patronymic { get; set; }
         private DateTime dateOfBirth;
         public DateTime DateOfBirth
         {
@@ -17,12 +17,12 @@ namespace Task1
             }
         }
 
-        public User(DateTime dateOfBirth, string firstName, string lastName, string pastronymic)
+        public User(DateTime dateOfBirth, string name, string lastName, string patronymic)
         {
             DateOfBirth = dateOfBirth;
-            FirstName = firstName;
+            Name = name;
             LastName = lastName;
-            Pastronymic = pastronymic;
+            Patronymic = patronymic;
         }
 
         public int Age()
@@ -43,7 +43,7 @@ namespace Task1
         }
         public override string ToString()
         {
-            return $"ФИО: {LastName} {FirstName} {Pastronymic}. Дата рождения: {DateOfBirth:D} Возраст: {Age()}";
+            return $"ФИО: {LastName} {Name} {Patronymic}. Дата рождения: {DateOfBirth:D} Возраст: {Age()}";
         }
     }
 }
