@@ -10,8 +10,8 @@ namespace Task2
         { 
             get => 2 * Math.PI * radius;
         }
-        private double radius;
-        public double Radius
+        private int radius;
+        public int Radius
         {
             get => radius;
             private set
@@ -20,7 +20,7 @@ namespace Task2
             }
         }
         public double Area { get => Math.PI * radius * radius; }
-        public Round(double radius, int x, int y)
+        public Round(int radius, int x, int y)
         {
             Radius = radius;
             X = x;

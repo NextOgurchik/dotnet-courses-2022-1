@@ -7,7 +7,7 @@ namespace Task2
         static void Main(string[] args)
         {
             int x, y;
-            double r;
+            int r;
             Console.Write("Введите радиус: ");
             Double.TryParse(Console.ReadLine(), out r);
             Console.Write("Введите координату X: ");
