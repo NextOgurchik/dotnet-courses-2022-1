@@ -8,46 +8,35 @@ namespace Task3
         public int A
         {
             get => a;
-            set
+            private set
             {
-                if (((a + b > c) && (a + c > b) && (b + c > a)) != true)
-                {
-                    throw new Exception("Triangle does not exist.");
-                }
                 a = value > 0 ? value : throw new Exception("Side cannot be less than zero.");
-
             }
         }
         private int b;
         public int B
         {
             get => b;
-            set
+            private set
             {
-                if (((a + b > c) && (a + c > b) && (b + c > a)) != true)
-                {
-                    throw new Exception("Triangle does not exist.");
-                }
                 b = value > 0 ? value : throw new Exception("Side cannot be less than zero.");
-
             }
         }
         private int c;
         public int C
         {
             get => c;
-            set 
+            private set 
             {
-                if (((a + b > c) && (a + c > b) && (b + c > a)) != true)
-                {
-                    throw new Exception("Triangle does not exist.");
-                }
                 c = value > 0 ? value : throw new Exception("Side cannot be less than zero.");
-                
             }
         }
         public Triangle(int a, int b, int c)
         {
+            if (((a + b > c) && (a + c > b) && (b + c > a)) != true)
+            {
+                throw new Exception("Triangle does not exist.");
+            }
             A = a;
             B = b;
             C = c;
