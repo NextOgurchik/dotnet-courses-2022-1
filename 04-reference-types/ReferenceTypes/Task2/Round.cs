@@ -20,11 +20,11 @@ namespace Task2
             }
         }
         public double Area { get => Math.PI * radius * radius; }
-        public Round(int x, int y, double radius)
+        public Round(double radius, int x, int y)
         {
+            Radius = radius;
             X = x;
             Y = y;
-            Radius = radius;
         }
         public override string ToString()
         {
