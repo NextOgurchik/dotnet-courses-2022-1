@@ -32,20 +32,20 @@ namespace Task4
 			Console.WriteLine("Программа для анализа скорости работы классов String и StringBuilder для операции сложения");
 			Console.WriteLine("Скорость сложения строки " + iterations + " раз");
 
-			double sec;
+			double number;
 			var watch = new Stopwatch();
 			watch.Start();
 			StringAddition();
 			watch.Stop();
-			sec = Convert.ToDouble(watch.ElapsedMilliseconds) / 1000;
-			Console.WriteLine("String: " + sec);
+			number = Convert.ToDouble(watch.ElapsedMilliseconds) / 1000;
+			Console.WriteLine("String: " + number);
 
 			watch = new Stopwatch();
 			watch.Start();
 			StringBuilderAddition();
 			watch.Stop();
-			sec = Convert.ToDouble(watch.ElapsedMilliseconds) / 1000;
-			Console.WriteLine("StringBuilder: " + sec);
+			number = Convert.ToDouble(watch.ElapsedMilliseconds) / 1000;
+			Console.WriteLine("StringBuilder: " + number);
 		}
 	}
 }

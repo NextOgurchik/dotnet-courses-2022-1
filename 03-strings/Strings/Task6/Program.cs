@@ -31,7 +31,7 @@ namespace Task6
             }
             else
             {
-                Console.WriteLine("Число не было введено");
+                Console.WriteLine("Это не число");
             }
         }
         static void Main(string[] args)
