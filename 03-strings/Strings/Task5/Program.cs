@@ -21,7 +21,7 @@ namespace Task5
             string s = "<b>Это</b> текст <i>с</i> <font color=\"red\">HTML</font> кодами";
             Console.WriteLine("Исходный текст: " + s);
             RemoveTags(ref s);
-            Console.WriteLine("Текст без тегов: " + s);
+            Console.WriteLine("Результат замены: " + s);
         }
     }
 }

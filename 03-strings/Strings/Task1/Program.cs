@@ -19,7 +19,7 @@ namespace Task1
             Console.WriteLine("Программа, определяющая среднюю длину слова в тексте");
             Console.Write("Введите текст: ");
             string t = Console.ReadLine();
-            Console.WriteLine($"Средняя длина слова в тексте: {AverageWordLength(t)}");
+            Console.WriteLine(AverageWordLength(t));
         }
     }
 }

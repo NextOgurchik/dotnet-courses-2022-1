@@ -30,7 +30,7 @@ namespace Task2
             Console.Write("Введите вторую строку: ");
             string s2 = Console.ReadLine();
             Console.WriteLine("Текст 1: " + s1 + "\nТекст 2: " + s2);
-            Console.WriteLine("Результат: " + DoublingCharacters(s1, s2));
+            Console.WriteLine(DoublingCharacters(s1, s2));
         }
     }
 }

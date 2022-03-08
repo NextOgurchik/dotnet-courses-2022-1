@@ -38,14 +38,14 @@ namespace Task4
 			StringAddition();
 			watch.Stop();
 			sec = Convert.ToDouble(watch.ElapsedMilliseconds) / 1000;
-			Console.WriteLine("Через String: " + sec + " сек");
+			Console.WriteLine("String: " + sec);
 
 			watch = new Stopwatch();
 			watch.Start();
 			StringBuilderAddition();
 			watch.Stop();
 			sec = Convert.ToDouble(watch.ElapsedMilliseconds) / 1000;
-			Console.WriteLine("Через StringBuilder: " + sec + " сек");
+			Console.WriteLine("StringBuilder: " + sec);
 		}
 	}
 }
