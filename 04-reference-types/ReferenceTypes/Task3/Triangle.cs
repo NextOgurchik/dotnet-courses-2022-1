@@ -4,8 +4,8 @@ namespace Task3
 {
     class Triangle
     {
-        private double a;
-        public double A
+        private int a;
+        public int A
         {
             get => a;
             set
@@ -18,8 +18,8 @@ namespace Task3
 
             }
         }
-        private double b;
-        public double B
+        private int b;
+        public int B
         {
             get => b;
             set
@@ -32,8 +32,8 @@ namespace Task3
 
             }
         }
-        private double c;
-        public double C
+        private int c;
+        public int C
         {
             get => c;
             set 
