@@ -16,7 +16,7 @@ namespace Task1
             patr = Console.ReadLine();
             Console.Write("Введите дату рождения: ");
             doB = Convert.ToDateTime(Console.ReadLine());
-            var user = new User(fname, sname, patr, doB);
+            var user = new User(doB, fname, sname, patr);
             Console.WriteLine(user);
         }
     }

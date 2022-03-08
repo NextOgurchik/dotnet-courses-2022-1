@@ -17,15 +17,15 @@ namespace Task1
             }
         }
 
-        public User(string firstName, string lastName, string pastronymic, DateTime dateOfBirth)
+        public User(DateTime dateOfBirth, string firstName, string lastName, string pastronymic)
         {
+            DateOfBirth = dateOfBirth;
             FirstName = firstName;
             LastName = lastName;
             Pastronymic = pastronymic;
-            DateOfBirth = dateOfBirth;
         }
 
-        public int GetAge()
+        public int Age()
         {
             int a = DateTime.Now.Year - DateOfBirth.Year;
             if (DateTime.Now.Month < DateOfBirth.Month)
@@ -43,7 +43,7 @@ namespace Task1
         }
         public override string ToString()
         {
-            return $"ФИО: {LastName} {FirstName} {Pastronymic}. Дата рождения: {DateOfBirth:D} Возраст: {GetAge()}";
+            return $"ФИО: {LastName} {FirstName} {Pastronymic}. Дата рождения: {DateOfBirth:D} Возраст: {Age()}";
         }
     }
 }
