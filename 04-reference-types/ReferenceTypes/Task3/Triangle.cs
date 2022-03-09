@@ -33,7 +33,7 @@ namespace Task3
         }
         public Triangle(int a, int b, int c)
         {
-            if (((a + b > c) && (a + c > b) && (b + c > a)) != true)
+            if (!((a + b > c) && (a + c > b) && (b + c > a)))
             {
                 throw new Exception("Triangle does not exist.");
             }

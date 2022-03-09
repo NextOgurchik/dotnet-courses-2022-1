@@ -12,6 +12,7 @@ namespace Task1
             {
                 count += word.Length;
             }
+            if (count == 0) { return 0; }
             return Convert.ToDouble(count / words.Length);
         }
         static void Main(string[] args)

@@ -6,10 +6,7 @@ namespace Task2
     {
         public int X { get; set; }
         public int Y { get; set; }
-        public double Circumference 
-        { 
-            get => 2 * Math.PI * radius;
-        }
+        public double Circumference =>  2 * Math.PI * radius;  
         private int radius;
         public int Radius
         {
@@ -19,7 +16,7 @@ namespace Task2
                 radius = value > 0 ? value : throw new Exception("Radius cannot be less than zero.");
             }
         }
-        public double Area { get => Math.PI * radius * radius; }
+        public double Area => Math.PI * radius * radius;
         public Round(int radius, int x, int y)
         {
             Radius = radius;
@@ -29,7 +26,7 @@ namespace Task2
         public override string ToString()
         {
             return $"Координаты X = {X}. Y = {Y}. Радиус = {Radius}. " +
-                $"Длина окружности = {Circumference}. Площадь окружности = {Area}.";
+                $"Длина окружности = {Circumference}. Площадь круга = {Area}.";
         }
     }
 }

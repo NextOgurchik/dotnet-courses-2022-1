@@ -9,19 +9,21 @@ namespace Task1
         public string Patronymic { get; set; }
 
         private readonly DateTime _dateOfBirth;
-        private int age;
+        
         public int Age
         {
             get
             {
-                age = DateTime.Now.Year - _dateOfBirth.Year;
-                if (DateTime.Now.Month < _dateOfBirth.Month)
+                DateTime dt = DateTime.Now;
+                int age;
+                age = dt.Year - _dateOfBirth.Year;
+                if (dt.Month < _dateOfBirth.Month)
                 {
                     age--;
                 }
-                else if (DateTime.Now.Month == _dateOfBirth.Month)
+                else if (dt.Month == _dateOfBirth.Month)
                 {
-                    if (DateTime.Now.Day < _dateOfBirth.Day)
+                    if (dt.Day < _dateOfBirth.Day)
                     {
                         age--;
                     }

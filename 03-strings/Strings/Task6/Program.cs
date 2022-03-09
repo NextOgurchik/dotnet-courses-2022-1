@@ -7,27 +7,16 @@ namespace Task6
     {
         static void NumberType(string text)
         {
-            Regex regex1 = new Regex(@"[-]?\d+[,|.]?\d*[e]{1}\d+");
-            Regex regex2 = new Regex(@"[-]?\d+[,|.]?\d*");
+            Regex regex1 = new Regex(@"[-]?\d+[,.]?\d*[eE]\d+");
+            Regex regex2 = new Regex(@"^[-]?\d+([,.]\d+)?$");
 
-            var matches1 = regex1.Matches(text);
-            var matches2 = regex2.Matches(text);
-
-            if (matches1.Count > 0)
+            if (regex1.IsMatch(text))
             {
-                foreach (Match match in matches1)
-                {
-                    Console.WriteLine(match);
-                    Console.WriteLine("Это число в научной нотации");
-                }
+                Console.WriteLine("Это число в научной нотации");
             }
-            else if (matches2.Count > 0)
+            else if (regex2.IsMatch(text))
             {
-                foreach (Match match in matches2)
-                {
-                    Console.WriteLine(match);
-                    Console.WriteLine("Это число в обычной нотации");
-                }
+                Console.WriteLine("Это число в обычной нотации");
             }
             else
             {

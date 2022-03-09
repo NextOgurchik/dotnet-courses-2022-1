@@ -4,7 +4,7 @@ namespace Task4
 {
     internal class MyString
     {
-        public char[] CharString { get; set; }
+        public char[] CharString { get; }
 
         public MyString()
         {
@@ -12,15 +12,11 @@ namespace Task4
         }
         public MyString(string charString)
         {
-            CharString = new char[charString.Length];
-            for (int i = 0; i < charString.Length; i++)
-            {
-                CharString[i] = charString[i];
-            }
+            CharString = charString.ToCharArray();
         }
         public MyString(char[] charString)
         {
-            CharString = charString;
+            CharString = charString.ToArray();
         }
         public static MyString operator +(MyString c1, MyString c2)
         {
@@ -32,7 +28,11 @@ namespace Task4
         }
         public static bool operator ==(MyString c1, MyString c2)
         {
-            if (c2 as object == null)
+            if (c1 as object == null && c2 as object == null)
+            {
+                return true;
+            }
+            else if (c1 as object == null || c2 as object == null)
             {
                 return false;
             }

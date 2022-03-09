@@ -32,8 +32,8 @@ namespace Task3
             {
                 { "en", "en-US" },
                 { "ru", "ru-RU" },
-                { "invariant", String.Empty },
-                { "", String.Empty }
+                { "invariant", string.Empty },
+                { "", string.Empty }
             };
             var cultureInfo1 = new CultureInfo(cultureName[c1]);
             var cultureInfo2 = new CultureInfo(cultureName[c2]);

@@ -29,18 +29,19 @@ namespace Task4
 		}
 		static void Main(string[] args)
 		{
-			double number;
 			var watch = new Stopwatch();
 			watch.Start();
 			StringAddition();
 			watch.Stop();
-			number = Convert.ToDouble(watch.ElapsedMilliseconds) / 1000;
+			double number = watch.Elapsed.TotalSeconds;
+
 			Console.WriteLine("String: " + number);
+
 			watch = new Stopwatch();
 			watch.Start();
 			StringBuilderAddition();
 			watch.Stop();
-			number = Convert.ToDouble(watch.ElapsedMilliseconds) / 1000;
+			number = watch.Elapsed.TotalSeconds;
 			Console.WriteLine("StringBuilder: " + number);
 		}
 	}
