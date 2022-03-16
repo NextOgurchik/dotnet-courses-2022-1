@@ -21,4 +21,5 @@ namespace Task1
                 Console.WriteLine(fig.Draw());
             }
         }
+    }
 }
