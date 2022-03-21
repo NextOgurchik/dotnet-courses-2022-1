@@ -16,7 +16,6 @@ namespace Task2
             int.TryParse(Console.ReadLine(), out int ir);
             var p = new Point(x, y);
             var ring = new Ring(or, ir, p.X, p.Y);
-            ring.Radius = 10;
             Console.WriteLine(ring);
         }
     }

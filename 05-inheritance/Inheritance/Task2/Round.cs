@@ -8,10 +8,10 @@ namespace Task2
         public int Y { get; set; }
         public virtual double Circumference => 2 * Math.PI * radius;
         private int radius;
-        public int Radius
+        public virtual int Radius
         {
             get => radius;
-            private set
+            set
             {
                 radius = value > 0 ? value : throw new Exception("Radius cannot be less than zero.");
             }

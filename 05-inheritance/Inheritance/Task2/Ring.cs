@@ -4,24 +4,21 @@ namespace Task2
 {
     internal sealed class Ring : Round
     {
-        private double radius;
-        public new double Radius
+        private int radius;
+        public override int Radius
         {
             get { return radius; }
             set
             {
-                if (value > innerRadius)
+                if (value <= innerRadius)
                 {
-                    radius = value;
+                    throw new Exception("The outer ring can't be smaller than the inner ring."); 
                 }
-                else
-                {
-                    throw new Exception("The outer ring can't be smaller than the inner ring.");
-                }
+                radius = value;
             }
         }
-        private double innerRadius;
-        public double InnerRadius
+        private int innerRadius;
+        public int InnerRadius
         {
             get { return innerRadius; }
             set

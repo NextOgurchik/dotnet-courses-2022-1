@@ -10,14 +10,11 @@ namespace Task1
             get { return experience; }
             set
             {
-                if (DateTime.Now.Year - DateOfBirth.Year > value && value >= 0)
-                {
-                    experience = value;
-                }
-                else
+                if (DateTime.Now.Year - DateOfBirth.Year <= value || value <= 0)
                 {
                     throw new Exception("Work experience is longer than employee's age or less than zero.");
                 }
+                experience = value;
             }
         }
         public string Position { get; set; }

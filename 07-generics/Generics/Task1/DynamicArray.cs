@@ -44,6 +44,7 @@ namespace Task1
             var oldArray = Copy(DArray);
 
             Length++;
+
             if (Length > Capacity)
             {
                 DArray = new T[Capacity * 2];

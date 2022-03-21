@@ -49,14 +49,12 @@ namespace Task1
             get { return radius; }
             set
             {
-                if (value > 0)
-                {
-                    radius = value;
-                }
-                else
+                if (value <= 0)
                 {
                     throw new Exception("Radius cannot be less than zero.");
+
                 }
+                radius = value;
             }
         }
         public Сircle(Point point, double radius)
@@ -89,14 +87,11 @@ namespace Task1
             get { return radius; }
             set
             {
-                if (value > innerRadius)
-                {
-                    radius = value;
-                }
-                else
+                if (value <= innerRadius)
                 {
                     throw new Exception("The outer ring can't be smaller than the inner ring.");
                 }
+                radius = value;
             }
         }
         private double innerRadius;
