@@ -5,7 +5,7 @@ namespace Task1
     internal class DynamicArray<T>
     {
         public int Length { get; private set; }
-        public int Capacity { get { return DArray.Length; } }
+        public int Capacity => DArray.Length; 
         public T[] DArray { get; set; }
         public T this[int index]
         {
