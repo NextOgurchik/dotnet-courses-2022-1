@@ -1,13 +1,6 @@
-﻿public interface ISeries
+﻿namespace Task3
 {
-	double GetCurrent();
-	bool MoveNext();
-	void Reset();
-}
-public interface IIndexable
-{
-	double this[int index] { get; }
-}
-interface IIndexableSeries : ISeries, IIndexable
-{
+    public interface IIndexableSeries : ISeries, IIndexable
+    {
+    }
 }

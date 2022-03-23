@@ -24,7 +24,7 @@ namespace Task4
         }
         public static MyString operator -(MyString c1, MyString c2)
         {
-            return new MyString(new string(c1.CharString).Replace(new string(c2.CharString), "").ToCharArray());
+            return new MyString(new string(c1.CharString).Replace(new string(c2.CharString), string.Empty).ToCharArray());
         }
         public static bool operator ==(MyString c1, MyString c2)
         {

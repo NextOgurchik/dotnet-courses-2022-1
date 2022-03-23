@@ -7,8 +7,7 @@ namespace Task1
         static void Main(string[] args)
         {
             string fname, sname, patr, pos;
-            int exp;
-            DateTime doB;
+            DateTime doB,doH;
             Console.Write("Введите фамилию: ");
             sname = Console.ReadLine();
             Console.Write("Введите имя: ");
@@ -17,11 +16,11 @@ namespace Task1
             patr = Console.ReadLine();
             Console.Write("Введите дату рождения: ");
             doB = Convert.ToDateTime(Console.ReadLine());
-            Console.Write("Введите стаж работы (лет): ");
-            exp = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Введите дату найма: ");
+            doH = Convert.ToDateTime(Console.ReadLine());
             Console.Write("Введите должность: ");
             pos = Console.ReadLine();
-            var worker = new Employee(fname, sname, patr, doB, exp, pos);
+            var worker = new Employee(fname, sname, patr, doB, doH, pos);
             Console.WriteLine(worker);
         }
     }

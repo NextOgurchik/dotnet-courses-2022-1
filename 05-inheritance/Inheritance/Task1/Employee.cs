@@ -4,25 +4,26 @@ namespace Task1
 {
     internal class Employee : User
     {
-        private int experience;
-        public int Experience
+        private DateTime dateOfHiring;
+        public DateTime DateOfHiring
         {
-            get { return experience; }
+            get { return dateOfHiring; }
             set
             {
-                if (DateTime.Now.Year - DateOfBirth.Year <= value || value <= 0)
+                if (value > DateTime.Now || value < DateOfBirth)
                 {
-                    throw new Exception("Work experience is longer than employee's age or less than zero.");
+                    throw new Exception("Work experience is longer than employee's term of work or employee was hired before he was born");
                 }
-                experience = value;
+                dateOfHiring = value;
             }
         }
+        public int Experience =>  DateTime.Now.Year - DateOfHiring.Year;
         public string Position { get; set; }
 
-        public Employee(string firstName, string lastName, string pastronymic, DateTime dateOfBirth, int experience, string position)
+        public Employee(string firstName, string lastName, string pastronymic, DateTime dateOfBirth, DateTime dateOfHiring, string position)
             : base(firstName, lastName, pastronymic, dateOfBirth)
         {
-            Experience = experience;
+            DateOfHiring = dateOfHiring;
             Position = position;
         }
 

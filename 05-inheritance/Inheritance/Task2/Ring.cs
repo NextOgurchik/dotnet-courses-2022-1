@@ -4,7 +4,6 @@ namespace Task2
 {
     internal sealed class Ring : Round
     {
-        private int radius;
         public override int Radius
         {
             get { return radius; }
@@ -30,12 +29,11 @@ namespace Task2
                 innerRadius = value;
             }
         }
-        public override double Circumference => (2 * Math.PI * radius) + (2 * Math.PI * innerRadius);
-        public override double Area => (Math.PI * radius * radius) - (Math.PI * innerRadius * innerRadius);
+        public override double Circumference => base.Circumference + (2 * Math.PI * innerRadius);
+        public override double Area => base.Area - (Math.PI * innerRadius * innerRadius);
         public Ring(int radius, int innerRadius, int x, int y)
             : base(radius, x, y)
         {
-            Radius = radius;
             InnerRadius = innerRadius;
         }
         public override string ToString()

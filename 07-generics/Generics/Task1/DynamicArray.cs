@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Task1
 {
@@ -6,7 +7,7 @@ namespace Task1
     {
         public int Length { get; private set; }
         public int Capacity => DArray.Length; 
-        public T[] DArray { get; set; }
+        private T[] DArray { get; set; }
         public T this[int index]
         {
             get
@@ -18,41 +19,32 @@ namespace Task1
                 return DArray[index];
             }
         }
-        public DynamicArray()
-        {
-            DArray = new T[8];
-        }
+        public DynamicArray():this(8) { }
         public DynamicArray(int capacity)
         {
             DArray = new T[capacity];
         }
         public DynamicArray(T[] array)
         {
-            DArray = array;
+            DArray = array.ToArray();
         }
-        private T[] Copy(T[] array)
+        private void CapacityIncrease() 
         {
-            var newArray = new T[array.Length];
-            for (int i = 0; i < array.Length; i++)
-            {
-                newArray[i] = array[i];
-            }
-            return newArray;
-        }
-        public void Add(T element)
-        {
-            var oldArray = Copy(DArray);
-
-            Length++;
-
-            if (Length > Capacity)
-            {
-                DArray = new T[Capacity * 2];
-            }
+            var oldArray = DArray.ToArray();
+            DArray = new T[Capacity * 2];
 
             for (int i = 0; i < oldArray.Length; i++)
             {
                 DArray[i] = oldArray[i];
+            }
+        }
+        public void Add(T element)
+        {
+            Length++;
+
+            if (Length > Capacity)
+            {
+                CapacityIncrease();
             }
 
             DArray[Length - 1] = element;
@@ -60,22 +52,12 @@ namespace Task1
 
         public void AddRange(T[] array)
         {
-            var oldArray = Copy(DArray);
-            int capacity = DArray.Length;
             int startLength = Length;
             Length += array.Length;
-            if (Length > capacity)
-            {
-                while (Length > capacity)
-                {
-                    capacity *= 2;
-                }
-                DArray = new T[capacity];
-            }
 
-            for (int i = 0; i < oldArray.Length; i++)
+            while (Length > Capacity)
             {
-                DArray[i] = oldArray[i];
+                CapacityIncrease();
             }
 
             int j = 0;
@@ -85,9 +67,10 @@ namespace Task1
                 j++;
             }
         }
-        public bool Remove(int index)
+        public bool Remove(int element)
         {
-            if (index < Length)
+            int index = Array.IndexOf(DArray, element);
+            if (index > -1)
             {
                 Length--;
                 for (int i = index; i < Length; i++)
@@ -108,25 +91,19 @@ namespace Task1
                 throw new ArgumentOutOfRangeException("Index out of range");
             }
 
-            var oldArray = Copy(DArray);
-
             Length++;
+
             if (Length > Capacity)
             {
-                DArray = new T[Capacity * 2];
+                CapacityIncrease();
             }
 
-            for (int i = 0; i < index; i++)
+            for (int i = Length - 1; i > index; i--)
             {
-                DArray[i] = oldArray[i];
+                DArray[i] = DArray[i - 1];
             }
 
             DArray[index] = element;
-
-            for (int i = index; i < Length; i++)
-            {
-                DArray[i + 1] = oldArray[i];
-            }
         }
     }
 }

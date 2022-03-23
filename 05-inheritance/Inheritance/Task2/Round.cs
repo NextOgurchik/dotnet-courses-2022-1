@@ -7,7 +7,7 @@ namespace Task2
         public int X { get; set; }
         public int Y { get; set; }
         public virtual double Circumference => 2 * Math.PI * radius;
-        private int radius;
+        protected int radius;
         public virtual int Radius
         {
             get => radius;

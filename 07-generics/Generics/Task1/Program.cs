@@ -6,11 +6,13 @@ namespace Task1
     {
         static void Main(string[] args)
         {
-            var DArr = new DynamicArray<int>();
-            DArr.Add(10);
-            DArr.Add(21);
-            DArr.Add(32);
-            DArr.Add(43);
+            var DArr = new DynamicArray<int>(4);
+            DArr.Add(1);
+            DArr.Add(2);
+            DArr.Add(3);
+            DArr.Add(4);
+            DArr.Insert(7,2);
+            DArr.Remove(7);
             DArr.Add(54);
             DArr.Add(65);
             DArr.Add(76);
@@ -23,7 +25,7 @@ namespace Task1
             DArr.Insert(666, DArr.Length - 1);
             DArr.Remove(7);
             DArr.Remove(77);
-            DArr.AddRange(new int[13] { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22});
+            DArr.AddRange(new int[3] { 10, 11, 12} );
             Console.WriteLine("Length = " + DArr.Length);
             Console.WriteLine("Capacity = " + DArr.Capacity);
             for (int i = 0; i < DArr.Length; i++)
