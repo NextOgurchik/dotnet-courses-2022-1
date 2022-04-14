@@ -29,6 +29,7 @@ namespace Task2
         public DynamicArray(IEnumerable<T> array)
         {
             DArray = array.ToArray();
+            Length = DArray.Length;
         }
         private void CapacityIncrease()
         {

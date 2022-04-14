@@ -67,7 +67,7 @@ namespace Task1
                 j++;
             }
         }
-        public bool Remove(int element)
+        public bool Remove(T element)
         {
             int index = Array.IndexOf(DArray, element);
             if (index > -1)
