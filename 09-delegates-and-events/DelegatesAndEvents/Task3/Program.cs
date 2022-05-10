@@ -1,10 +1,18 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace Task1
+namespace Task3
 {
     internal class Program
     {
-        static void Sort(string[] array, Func<string, string, int> Comparer)
+        static Task SortAsync(string[] array, Func<string, string, int> Comparer)
+        {
+            Task task = Task.Factory.StartNew(() => { Go(array, Comparer); });
+            Task.WaitAll(task);
+            return task;
+        }
+        static void Go(string[] array, Func<string, string, int> Comparer)
         {
             for (int i = 0; i < array.Length; i++)
             {
@@ -35,26 +43,26 @@ namespace Task1
             }
             else
             {
-                    int i = 0;
-                    while (i < string1.Length)
+                int i = 0;
+                while (i < string1.Length)
+                {
+                    if (string1[i] > string2[i])
                     {
-                        if (string1[i] > string2[i])
-                        {
-                            return 1;
-                        }
-                        else if (string1[i] < string2[i])
-                        {
-                            return -1;
-                        }
-                        i++;
+                        return 1;
                     }
+                    else if (string1[i] < string2[i])
+                    {
+                        return -1;
+                    }
+                    i++;
+                }
                 return 0;
             }
         }
         static void Main(string[] args)
         {
-            var str = new string[6] { "AA", "B", "AB", "A", "B", "BA" };
-            Sort(str, CompareStrings);
+            var str = new string[7] { "AB", "A", "B", "BA", "B", "CA", "A" };
+            SortAsync(str, CompareStrings);
             foreach (var item in str)
             {
                 Console.WriteLine(item);
@@ -62,4 +70,3 @@ namespace Task1
         }
     }
 }
-
