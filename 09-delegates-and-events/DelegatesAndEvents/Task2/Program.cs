@@ -39,7 +39,7 @@ namespace Task2
                 .Where(e => e.AtWork && e.Name != args.Name)
                 .OrderBy(e => e.TimeIn);
 
-            if (list.Count() == 0)
+            if (!list.Any())
             {
                 Console.WriteLine("Никто не работает");
                 return;
@@ -56,7 +56,7 @@ namespace Task2
                .Where(e => e.AtWork && e.Name != args.Name)
                .OrderBy(e => e.TimeIn);
 
-            if (list.Count() == 0)
+            if (!list.Any())
             {
                 Console.WriteLine("Никто не работает");
                 return;

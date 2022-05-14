@@ -35,7 +35,7 @@ namespace Task2
 
         public bool Equals(Employee other)
         {
-            if (Experience == other.Experience && FirstName == other.FirstName
+            if (FirstName == other.FirstName
             && LastName == other.LastName && Pastronymic == other.Pastronymic
             && DateOfBirth == other.DateOfBirth)
             {
