@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Extensions.Configuration;
+using BLL;
+using DAL;
 
 namespace WinFormsApp1
 {
@@ -17,7 +20,15 @@ namespace WinFormsApp1
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            var configurationBuilder = new ConfigurationBuilder();
+            configurationBuilder.AddJsonFile("appConfig.json");
+            var config = configurationBuilder.Build();
+            var connectionString = config["ConnectionString"];
+
+            var userDAO = new UserListDAO(connectionString);
+            var rewardDAO = new RewardListDAO(connectionString);
+            Application.Run(new MainForm(new UserBL(userDAO), new RewardBL(rewardDAO)));
         }
     }
 }
