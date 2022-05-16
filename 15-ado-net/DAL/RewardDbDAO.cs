@@ -5,21 +5,22 @@ using System.Linq;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace DAL
+namespace DAL.Db
 {
-    public class RewardListDAO : IRewardDAO
+    public class RewardDbDAO : IRewardDAO
     {
         private readonly string connectionString;
-        public RewardListDAO(string connectionString)
+        public RewardDbDAO(string connectionString)
         {
             this.connectionString = connectionString;
         }
         public void Add(Reward reward)
         {
             using (var connection = new SqlConnection(connectionString))
-            using (var command = new SqlCommand("EXEC AddReward @title, @description", connection))
+            using (var command = new SqlCommand("AddReward", connection))
             {
                 connection.Open();
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("title", SqlDbType.NVarChar).Value = reward.Title;
                 command.Parameters.Add("description", SqlDbType.NVarChar).Value = reward.Description;
                 command.ExecuteNonQuery();
@@ -28,22 +29,24 @@ namespace DAL
         public void Remove(Reward reward)
         {
             using (var connection = new SqlConnection(connectionString))
-            using (var command = new SqlCommand("EXEC DeleteReward @id", connection))
+            using (var command = new SqlCommand("DeleteReward", connection))
             {
                 connection.Open();
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("id", SqlDbType.Int).Value = reward.Id;
                 command.ExecuteNonQuery();
             }
         }
-        public void Update(Reward reward, string title, string description)
+        public void Update(int rewardId, Reward reward)
         {
             using (var connection = new SqlConnection(connectionString))
-            using (var command = new SqlCommand("EXEC UpdateReward @id, @title, @description", connection))
+            using (var command = new SqlCommand("UpdateReward", connection))
             {
                 connection.Open();
-                command.Parameters.Add("id", SqlDbType.Int).Value = reward.Id;
-                command.Parameters.Add("title", SqlDbType.NVarChar).Value = title;
-                command.Parameters.Add("description", SqlDbType.NVarChar).Value = description;
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("id", SqlDbType.Int).Value = rewardId;
+                command.Parameters.Add("title", SqlDbType.NVarChar).Value = reward.Title;
+                command.Parameters.Add("description", SqlDbType.NVarChar).Value = reward.Description;
                 command.ExecuteNonQuery();
             }
         }

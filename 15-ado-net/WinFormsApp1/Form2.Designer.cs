@@ -1,6 +1,6 @@
 ﻿namespace WinFormsApp1
 {
-    partial class Form2
+    partial class AddEditForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,43 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.save = new System.Windows.Forms.Button();
+            this.age = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.moveRight = new System.Windows.Forms.Button();
+            this.moveLeft = new System.Windows.Forms.Button();
+            this.lastName = new System.Windows.Forms.TextBox();
+            this.firstName = new System.Windows.Forms.TextBox();
+            this.id = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.button4 = new System.Windows.Forms.Button();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.birthdate = new System.Windows.Forms.DateTimePicker();
+            this.remove = new System.Windows.Forms.Button();
+            this.listRewards = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
             // 
-            // button3
+            // save
             // 
-            this.button3.Location = new System.Drawing.Point(528, 150);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(117, 43);
-            this.button3.TabIndex = 25;
-            this.button3.Text = "Сохранить";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.save.Location = new System.Drawing.Point(528, 150);
+            this.save.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.save.Name = "save";
+            this.save.Size = new System.Drawing.Size(117, 43);
+            this.save.TabIndex = 25;
+            this.save.Text = "Сохранить";
+            this.save.UseVisualStyleBackColor = true;
+            this.save.Click += new System.EventHandler(this.save_Click);
             // 
-            // textBox5
+            // age
             // 
-            this.textBox5.Location = new System.Drawing.Point(528, 88);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(116, 42);
-            this.textBox5.TabIndex = 24;
+            this.age.Location = new System.Drawing.Point(528, 88);
+            this.age.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.age.Multiline = true;
+            this.age.Name = "age";
+            this.age.ReadOnly = true;
+            this.age.Size = new System.Drawing.Size(116, 42);
+            this.age.TabIndex = 24;
             // 
             // label5
             // 
@@ -76,55 +76,55 @@
             this.label5.Text = "Возраст";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // button2
+            // moveRight
             // 
-            this.button2.Location = new System.Drawing.Point(473, 150);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(47, 43);
-            this.button2.TabIndex = 22;
-            this.button2.Text = ">";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.moveRight.Location = new System.Drawing.Point(473, 150);
+            this.moveRight.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.moveRight.Name = "moveRight";
+            this.moveRight.Size = new System.Drawing.Size(47, 43);
+            this.moveRight.TabIndex = 22;
+            this.moveRight.Text = ">";
+            this.moveRight.UseVisualStyleBackColor = true;
+            this.moveRight.Click += new System.EventHandler(this.moveRight_Click);
             // 
-            // button1
+            // moveLeft
             // 
-            this.button1.Location = new System.Drawing.Point(418, 150);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(47, 43);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "<";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.moveLeft.Location = new System.Drawing.Point(418, 150);
+            this.moveLeft.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.moveLeft.Name = "moveLeft";
+            this.moveLeft.Size = new System.Drawing.Size(47, 43);
+            this.moveLeft.TabIndex = 21;
+            this.moveLeft.Text = "<";
+            this.moveLeft.UseVisualStyleBackColor = true;
+            this.moveLeft.Click += new System.EventHandler(this.moveLeft_Click);
             // 
-            // textBox3
+            // lastName
             // 
-            this.textBox3.Location = new System.Drawing.Point(281, 88);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(116, 42);
-            this.textBox3.TabIndex = 19;
+            this.lastName.Location = new System.Drawing.Point(281, 88);
+            this.lastName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.lastName.Multiline = true;
+            this.lastName.Name = "lastName";
+            this.lastName.Size = new System.Drawing.Size(116, 42);
+            this.lastName.TabIndex = 19;
             // 
-            // textBox2
+            // firstName
             // 
-            this.textBox2.Location = new System.Drawing.Point(158, 88);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(116, 42);
-            this.textBox2.TabIndex = 18;
+            this.firstName.Location = new System.Drawing.Point(158, 88);
+            this.firstName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.firstName.Multiline = true;
+            this.firstName.Name = "firstName";
+            this.firstName.Size = new System.Drawing.Size(116, 42);
+            this.firstName.TabIndex = 18;
             // 
-            // textBox1
+            // id
             // 
-            this.textBox1.Location = new System.Drawing.Point(34, 88);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(116, 42);
-            this.textBox1.TabIndex = 17;
+            this.id.Location = new System.Drawing.Point(34, 88);
+            this.id.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.id.Multiline = true;
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Size = new System.Drawing.Size(116, 42);
+            this.id.TabIndex = 17;
             // 
             // label4
             // 
@@ -166,57 +166,57 @@
             this.label1.Text = "ID";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // dateTimePicker1
+            // birthdate
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(405, 97);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(115, 23);
-            this.dateTimePicker1.TabIndex = 27;
+            this.birthdate.Location = new System.Drawing.Point(405, 97);
+            this.birthdate.Name = "birthdate";
+            this.birthdate.Size = new System.Drawing.Size(115, 23);
+            this.birthdate.TabIndex = 27;
             // 
-            // button4
+            // remove
             // 
-            this.button4.Location = new System.Drawing.Point(293, 150);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(117, 43);
-            this.button4.TabIndex = 28;
-            this.button4.Text = "Удалить";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.remove.Location = new System.Drawing.Point(293, 150);
+            this.remove.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.remove.Name = "remove";
+            this.remove.Size = new System.Drawing.Size(117, 43);
+            this.remove.TabIndex = 28;
+            this.remove.Text = "Удалить";
+            this.remove.UseVisualStyleBackColor = true;
+            this.remove.Click += new System.EventHandler(this.remove_Click);
             // 
-            // checkedListBox1
+            // listRewards
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(34, 150);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(240, 76);
-            this.checkedListBox1.TabIndex = 29;
+            this.listRewards.FormattingEnabled = true;
+            this.listRewards.Location = new System.Drawing.Point(34, 150);
+            this.listRewards.Name = "listRewards";
+            this.listRewards.Size = new System.Drawing.Size(240, 76);
+            this.listRewards.TabIndex = 29;
             // 
-            // Form2
+            // AddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(680, 248);
-            this.Controls.Add(this.checkedListBox1);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.listRewards);
+            this.Controls.Add(this.remove);
+            this.Controls.Add(this.birthdate);
+            this.Controls.Add(this.save);
+            this.Controls.Add(this.age);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.moveRight);
+            this.Controls.Add(this.moveLeft);
+            this.Controls.Add(this.lastName);
+            this.Controls.Add(this.firstName);
+            this.Controls.Add(this.id);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
-            this.Name = "Form2";
-            this.Text = "Form2";
-            this.Load += new System.EventHandler(this.Form2_Load);
+            this.Name = "AddEditForm";
+            this.Text = "Создание и редактирование";
+            this.Load += new System.EventHandler(this.AddEditForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -224,20 +224,20 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Button save;
+        private System.Windows.Forms.TextBox age;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button moveRight;
+        private System.Windows.Forms.Button moveLeft;
+        private System.Windows.Forms.TextBox lastName;
+        private System.Windows.Forms.TextBox firstName;
+        private System.Windows.Forms.TextBox id;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.DateTimePicker birthdate;
+        private System.Windows.Forms.Button remove;
+        private System.Windows.Forms.CheckedListBox listRewards;
     }
 }

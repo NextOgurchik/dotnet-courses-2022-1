@@ -34,7 +34,7 @@ namespace WinFormsApp1
             var rewards = rewardBL.GetAll();
 
             userBL.AddReward(users[0], rewards[0]);
-            
+
             dataGridView1.DataSource = new MyBindingList<User>(userBL.GetAll().ToArray());
             dataGridView2.DataSource = new MyBindingList<Reward>(rewardBL.GetAll().ToArray());
         }

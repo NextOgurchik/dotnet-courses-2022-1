@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace WinFormsApp1
 {
@@ -73,12 +74,7 @@ namespace WinFormsApp1
         {
             get
             {
-                string reward = "";
-                for (int i = 0; i < ListReward.Count; i++)
-                {
-                    reward += "|" + ListReward[i].Title + "|";
-                }
-                return reward;
+                return string.Join('|', ListReward.Select(l=>l.Title));
             }
         }
 

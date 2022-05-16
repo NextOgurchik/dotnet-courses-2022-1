@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Entities
 {
@@ -12,9 +13,9 @@ namespace Entities
             get { return firstName; }
             set
             {
-                if (value.Length > 50)
+                if (value.Length > 50 || value.Length < 1)
                 {
-                    throw new Exception("The string is too long.");
+                    throw new Exception("The string is too long or contains less than 1 character.");
                 }
                 firstName = value;
             }
@@ -25,9 +26,9 @@ namespace Entities
             get { return lastName; }
             set
             {
-                if (value.Length > 50)
+                if (value.Length > 50 || value.Length < 1)
                 {
-                    throw new Exception("The string is too long.");
+                    throw new Exception("The string is too long or contains less than 1 character.");
                 }
                 lastName = value;
             }
@@ -73,12 +74,7 @@ namespace Entities
         {
             get
             {
-                string reward = "";
-                for (int i = 0; i < ListReward.Count; i++)
-                {
-                    reward += "|" + ListReward[i].Title + "|";
-                }
-                return reward;
+                return string.Join(" | ", ListReward.Select(l => l.Title));
             }
         }
 

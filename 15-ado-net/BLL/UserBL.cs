@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Entities;
-using DAL;
 using Interfaces;
 
 namespace BLL
@@ -26,9 +25,9 @@ namespace BLL
             _userDAO.Remove(user);
         }
 
-        public void Update(User user, string firstName, string lastName, DateTime birthdate)
+        public void Update(int userId, User user)
         {
-            _userDAO.Update(user, firstName, lastName, birthdate);
+            _userDAO.Update(userId, user);
         }
 
         public void AddReward(User user, Reward reward)

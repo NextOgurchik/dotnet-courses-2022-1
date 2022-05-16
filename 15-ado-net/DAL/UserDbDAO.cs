@@ -6,21 +6,22 @@ using System;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace DAL
+namespace DAL.Db
 {
-    public class UserListDAO : IUserDAO
+    public class UserDbDAO : IUserDAO
     {
         private readonly string connectionString;
-        public UserListDAO(string connectionString)
+        public UserDbDAO(string connectionString)
         {
             this.connectionString = connectionString;
         }
         public void Add(User user)
         {
             using (var connection = new SqlConnection(connectionString))
-            using (var command = new SqlCommand("EXEC AddUser @FirstName, @LastName, @Birthdate", connection))
+            using (var command = new SqlCommand("AddUser", connection))
             {
                 connection.Open();
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("FirstName", SqlDbType.NVarChar).Value = user.FirstName;
                 command.Parameters.Add("LastName", SqlDbType.NVarChar).Value = user.LastName;
                 command.Parameters.Add("Birthdate", SqlDbType.Date).Value = user.Birthdate;
@@ -30,9 +31,10 @@ namespace DAL
         public void Remove(User user)
         {
             using (var connection = new SqlConnection(connectionString))
-            using (var command = new SqlCommand("EXEC DeleteUser @id", connection))
+            using (var command = new SqlCommand("DeleteUser", connection))
             {
                 connection.Open();
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("id", SqlDbType.NVarChar).Value = user.Id;
                 command.ExecuteNonQuery();
             }
@@ -57,9 +59,10 @@ namespace DAL
             for (int i = 0; i < listUser.Count; i++)
             {
                 using (var connection = new SqlConnection(connectionString))
-                using (var command = new SqlCommand("EXEC GetUserRewards @id", connection))
+                using (var command = new SqlCommand("GetUserRewards", connection))
                 {
                     connection.Open();
+                    command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add("id", SqlDbType.Int).Value = listUser[i].Id;
 
                     var reader = command.ExecuteReader();
@@ -72,13 +75,14 @@ namespace DAL
             }
             return listUser;
         }
-        public void Update(User user, string firstName, string lastName, DateTime birthdate)
+        public void Update(int userId, User user)
         {
             using (var connection = new SqlConnection(connectionString))
-            using (var command = new SqlCommand("EXEC UpdateUser @id, @FirstName, @LastName, @Birthdate", connection))
+            using (var command = new SqlCommand("UpdateUser", connection))
             {
                 connection.Open();
-                command.Parameters.Add("id", SqlDbType.Int).Value = user.Id;
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("id", SqlDbType.Int).Value = userId;
                 command.Parameters.Add("FirstName", SqlDbType.NVarChar).Value = user.FirstName;
                 command.Parameters.Add("LastName", SqlDbType.NVarChar).Value = user.LastName;
                 command.Parameters.Add("Birthdate", SqlDbType.Date).Value = user.Birthdate;
@@ -87,6 +91,14 @@ namespace DAL
         }
         public void AddReward(User user, Reward reward)
         {
+            for (int i = 0; i < user.ListReward.Count; i++)
+            {
+                if (user.ListReward[i].Id == reward.Id)
+                {
+                    RemoveReward(user, user.ListReward[i]);
+                }
+            }
+
             using (var connection = new SqlConnection(connectionString))
             using (var command = new SqlCommand("INSERT INTO UsersRewards(UserId, RewardId) VALUES(@userId, @rewardId)", connection))
             {

@@ -25,13 +25,9 @@ namespace BLL
         {
             _rewardDAO.Remove(reward);
         }
-        public void Update(Reward reward, string title, string description)
+        public void Update(int rewardId, Reward reward)
         {
-            _rewardDAO.Update(reward, title, description);
-        }
-        public void SetDescription(Reward reward, string description)
-        {
-            reward.Description = description;
+            _rewardDAO.Update(rewardId, reward);
         }
     }
 }

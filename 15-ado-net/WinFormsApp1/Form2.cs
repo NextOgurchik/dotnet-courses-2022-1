@@ -7,7 +7,7 @@ using Interfaces;
 
 namespace WinFormsApp1
 {
-    public partial class Form2 : Form
+    public partial class AddEditForm : Form
     {
         readonly int m;
         int number = 0;
@@ -16,7 +16,7 @@ namespace WinFormsApp1
 
         public readonly IUserBL userBL;
         public readonly IRewardBL rewardBL;
-        public Form2(int mode, IUserBL userBL, IRewardBL rewardBL)
+        public AddEditForm(int mode, IUserBL userBL, IRewardBL rewardBL)
         {
             InitializeComponent();
             this.userBL = userBL;
@@ -24,7 +24,7 @@ namespace WinFormsApp1
             m = mode;
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        private void AddEditForm_Load(object sender, EventArgs e)
         {
             users = userBL.GetAll();
             rewards = rewardBL.GetAll();
@@ -32,60 +32,60 @@ namespace WinFormsApp1
             if (m == 1)
             {
                 Text = "Создание пользователей";
-                button1.Visible = false;
-                button2.Visible = false;
-                button4.Visible = false;
-                textBox1.Visible = false;
-                dateTimePicker1.Visible = true;
-                textBox5.Visible = true;
+                moveLeft.Visible = false;
+                moveRight.Visible = false;
+                remove.Visible = false;
+                id.Visible = false;
+                birthdate.Visible = true;
+                age.Visible = true;
                 label1.Visible = false;
                 label4.Visible = true;
                 label5.Visible = true;
-                checkedListBox1.Visible = true;
-                textBox1.Clear();
-                textBox2.Clear();
-                textBox3.Clear();
-                textBox5.Clear();
+                listRewards.Visible = true;
+                id.Clear();
+                firstName.Clear();
+                lastName.Clear();
+                age.Clear();
                 label2.Text = "Имя";
                 label3.Text = "Фамилия";
                 label4.Text = "Дата рождения";
                 label5.Text = "Возраст";
                 for (int i = 0; i < rewards.Count; i++)
                 {
-                    checkedListBox1.Items.Add(rewards[i].Title);
+                    listRewards.Items.Add(rewards[i].Title);
                 }
             }
 
             else if (m == 2)
             {
                 Text = "Редактирование пользователей";
-                button1.Visible = true;
-                button2.Visible = true;
-                button4.Visible = true;
-                button1.Enabled = false;
+                moveLeft.Visible = true;
+                moveRight.Visible = true;
+                remove.Visible = true;
+                moveLeft.Enabled = false;
                 if (users.Count == 1)
                 {
-                    button2.Enabled = false;
-                    button4.Enabled = false;
+                    moveRight.Enabled = false;
+                    remove.Enabled = false;
                 }
-                textBox1.Visible = true;
-                dateTimePicker1.Visible = true;
-                textBox5.Visible = true;
+                id.Visible = true;
+                birthdate.Visible = true;
+                age.Visible = true;
                 label1.Visible = true;
                 label4.Visible = true;
                 label5.Visible = true;
-                checkedListBox1.Visible = true;
-                textBox1.Text = Convert.ToString(users[0].Id);
-                textBox2.Text = users[0].FirstName;
-                textBox3.Text = users[0].LastName;
-                dateTimePicker1.Text = Convert.ToString(users[0].Birthdate);
-                textBox5.Text = Convert.ToString(users[0].Age);
+                listRewards.Visible = true;
+                id.Text = Convert.ToString(users[0].Id);
+                firstName.Text = users[0].FirstName;
+                lastName.Text = users[0].LastName;
+                birthdate.Text = Convert.ToString(users[0].Birthdate);
+                age.Text = Convert.ToString(users[0].Age);
                 for (int i = 0; i < rewards.Count; i++)
                 {
-                    checkedListBox1.Items.Add(rewards[i].Title);
+                    listRewards.Items.Add(rewards[i].Title);
                 }
                 
-                for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                for (int i = 0; i < listRewards.Items.Count; i++)
                 {
                     bool isContains = false;
                     for (int j = 0; j < users[0].ListReward.Count; j++)
@@ -98,7 +98,7 @@ namespace WinFormsApp1
 
                     if (isContains)
                     {
-                        checkedListBox1.SetItemChecked(i, true);
+                        listRewards.SetItemChecked(i, true);
                     }
                 }
                 
@@ -111,19 +111,19 @@ namespace WinFormsApp1
             else if (m == 3)
             {
                 Text = "Создание наград";
-                button1.Visible = false;
-                button2.Visible = false;
-                button4.Visible = false;
-                textBox1.Visible = false;
-                dateTimePicker1.Visible = false;
-                textBox5.Visible = false;
+                moveLeft.Visible = false;
+                moveRight.Visible = false;
+                remove.Visible = false;
+                id.Visible = false;
+                birthdate.Visible = false;
+                age.Visible = false;
                 label1.Visible = false;
                 label4.Visible = false;
                 label5.Visible = false;
-                checkedListBox1.Visible = false;
-                textBox1.Clear();
-                textBox2.Clear();
-                textBox3.Clear();
+                listRewards.Visible = false;
+                id.Clear();
+                firstName.Clear();
+                lastName.Clear();
                 label2.Text = "Наименование";
                 label3.Text = "Описание";
             }
@@ -131,37 +131,37 @@ namespace WinFormsApp1
             else if (m == 4)
             {
                 Text = "Редактирование наград";
-                button1.Visible = true;
-                button2.Visible = true;
-                button4.Visible = true;
-                button1.Enabled = false;
+                moveLeft.Visible = true;
+                moveRight.Visible = true;
+                remove.Visible = true;
+                moveLeft.Enabled = false;
                 if (rewards.Count == 1)
                 {
-                    button2.Enabled = false;
-                    button4.Enabled = false;
+                    moveRight.Enabled = false;
+                    remove.Enabled = false;
                 }
-                textBox1.Visible = true;
-                dateTimePicker1.Visible = false;
-                textBox5.Visible = false;
+                id.Visible = true;
+                birthdate.Visible = false;
+                age.Visible = false;
                 label1.Visible = true;
                 label4.Visible = false;
                 label5.Visible = false;
-                checkedListBox1.Visible = false;
-                textBox1.Text = Convert.ToString(rewards[0].Id);
-                textBox2.Text = rewards[0].Title;
-                textBox3.Text = rewards[0].Description;
+                listRewards.Visible = false;
+                id.Text = Convert.ToString(rewards[0].Id);
+                firstName.Text = rewards[0].Title;
+                lastName.Text = rewards[0].Description;
                 label2.Text = "Наименование";
                 label3.Text = "Описание";
             }
         }
-        private void button3_Click(object sender, EventArgs e)
+        private void save_Click(object sender, EventArgs e)
         {
             if (m == 1)
             {
-                userBL.Add(new User(textBox2.Text, textBox3.Text, dateTimePicker1.Value));
-                for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                userBL.Add(new User(firstName.Text, lastName.Text, birthdate.Value));
+                for (int i = 0; i < listRewards.Items.Count; i++)
                 {
-                    if (checkedListBox1.CheckedItems.Contains(checkedListBox1.Items[i]))
+                    if (listRewards.CheckedItems.Contains(listRewards.Items[i]))
                     {
                         userBL.AddReward(users[users.Count - 1], rewards[i]);
                     }
@@ -170,52 +170,46 @@ namespace WinFormsApp1
             }
             else if (m == 2)
             {
-                userBL.Update(users[number], textBox2.Text, textBox3.Text, dateTimePicker1.Value);
-                for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                userBL.Update(users[number].Id, new User(firstName.Text, lastName.Text, birthdate.Value));
+                for (int i = 0; i < listRewards.Items.Count; i++)
                 {
-                    if (checkedListBox1.CheckedItems.Contains(checkedListBox1.Items[i]))
+                    if (listRewards.CheckedItems.Contains(listRewards.Items[i]))
                     {
-                        if (!users[number].ListReward.Contains(rewards[i]))
-                        {
-                            userBL.AddReward(users[number], rewards[i]);
-                        }
+                        userBL.AddReward(users[number], rewards[i]);
                     }
-                    else
+                    else//если нет галочки
                     {
-                        if (users[number].ListReward.Contains(rewards[i]))
-                        {
-                            userBL.RemoveReward(users[number], rewards[i]);
-                        }
+                        userBL.RemoveReward(users[number], rewards[i]);
                     }
                 }
             }
             else if (m == 3)
             {
-                rewardBL.Add(new Reward(textBox2.Text, textBox3.Text));
+                rewardBL.Add(new Reward(firstName.Text, lastName.Text));
                 Close();
             }
             else if (m == 4)
             {
-                rewardBL.Update(rewards[number], textBox2.Text, textBox3.Text);
+                rewardBL.Update(rewards[number].Id, new Reward(firstName.Text, lastName.Text));
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void moveRight_Click(object sender, EventArgs e)
         {
             number++;
             if ((m <= 2 && number >= users.Count-1) || (m >= 3 && number >= rewards.Count-1))
             {
-                button2.Enabled = false;
+                moveRight.Enabled = false;
             }
             if (m == 2)
             {
-                textBox1.Text = Convert.ToString(users[number].Id);
-                textBox2.Text = users[number].FirstName;
-                textBox3.Text = users[number].LastName;
-                dateTimePicker1.Value = users[number].Birthdate;
-                textBox5.Text = Convert.ToString(users[number].Age);
+                id.Text = Convert.ToString(users[number].Id);
+                firstName.Text = users[number].FirstName;
+                lastName.Text = users[number].LastName;
+                birthdate.Value = users[number].Birthdate;
+                age.Text = Convert.ToString(users[number].Age);
 
-                for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                for (int i = 0; i < listRewards.Items.Count; i++)
                 {
                     bool isContains = false;
                     for (int j = 0; j < users[number].ListReward.Count; j++)
@@ -228,60 +222,69 @@ namespace WinFormsApp1
 
                     if (isContains)
                     {
-                        checkedListBox1.SetItemChecked(i, true);
+                        listRewards.SetItemChecked(i, true);
                     }
 
                     else
                     {
-                        checkedListBox1.SetItemChecked(i, false);
+                        listRewards.SetItemChecked(i, false);
                     }
                 }
             }
             if (m == 4)
             {
-                textBox1.Text = Convert.ToString(rewards[number].Id);
-                textBox2.Text = rewards[number].Title;
-                textBox3.Text = rewards[number].Description;
+                id.Text = Convert.ToString(rewards[number].Id);
+                firstName.Text = rewards[number].Title;
+                lastName.Text = rewards[number].Description;
             }
-            button1.Enabled = true;
+            moveLeft.Enabled = true;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void moveLeft_Click(object sender, EventArgs e)
         {
             number--;
             if (number < 1)
             {
-                button1.Enabled = false;
+                moveLeft.Enabled = false;
             }
             if (m == 2)
             {
-                textBox1.Text = Convert.ToString(users[number].Id);
-                textBox2.Text = users[number].FirstName;
-                textBox3.Text = users[number].LastName;
-                dateTimePicker1.Value = users[number].Birthdate;
-                textBox5.Text = Convert.ToString(users[number].Age);
-                for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                id.Text = Convert.ToString(users[number].Id);
+                firstName.Text = users[number].FirstName;
+                lastName.Text = users[number].LastName;
+                birthdate.Value = users[number].Birthdate;
+                age.Text = Convert.ToString(users[number].Age);
+                for (int i = 0; i < listRewards.Items.Count; i++)
                 {
-                    if (users[number].ListReward.Contains(rewards[i]))
+                    bool isContains = false;
+                    for (int j = 0; j < users[0].ListReward.Count; j++)
                     {
-                        checkedListBox1.SetItemChecked(i, true);
+                        if (users[number].ListReward[j].Id == rewards[i].Id)
+                        {
+                            isContains = true;
+                        }
+                    }
+
+                    if (isContains)
+                    {
+                        listRewards.SetItemChecked(i, true);
                     }
                     else
                     {
-                        checkedListBox1.SetItemChecked(i, false);
+                        listRewards.SetItemChecked(i, false);
                     }
                 }
             }
             if (m == 4)
             {
-                textBox1.Text = Convert.ToString(rewards[number].Id);
-                textBox2.Text = rewards[number].Title;
-                textBox3.Text = rewards[number].Description;
+                id.Text = Convert.ToString(rewards[number].Id);
+                firstName.Text = rewards[number].Title;
+                lastName.Text = rewards[number].Description;
             }
-            button2.Enabled = true;
+            moveRight.Enabled = true;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void remove_Click(object sender, EventArgs e)
         {
             if (m == 2)
             {
@@ -297,10 +300,6 @@ namespace WinFormsApp1
                 DialogResult dialogResult = MessageBox.Show("Удаление данных", "Вы действительно хотите удалить эту награду?", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    for (int i = 0; i < users.Count; i++)
-                    {
-                        userBL.RemoveReward(users[i], rewards[number]);
-                    }
                     rewardBL.Remove(rewards[number]);
                     Close();
                 }

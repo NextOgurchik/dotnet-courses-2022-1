@@ -11,9 +11,9 @@ namespace Entities
             get { return title; }
             set
             {
-                if (value.Length > 50)
+                if (value.Length > 50 || value.Length < 1)
                 {
-                    throw new Exception("The string is too long.");
+                    throw new Exception("The string is too long or contains less than 1 character.");
                 }
                 title = value;
             }

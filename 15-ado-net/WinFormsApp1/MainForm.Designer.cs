@@ -29,34 +29,34 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.добавитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.редактироватьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.наградаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.добавитьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.редактироватьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rewardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addRewardToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.editRewardToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.userGridView = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.rewardGridView = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userGridView)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rewardGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.файлToolStripMenuItem,
-            this.наградаToolStripMenuItem,
-            this.обновитьToolStripMenuItem,
-            this.оПрограммеToolStripMenuItem});
+            this.userToolStripMenuItem,
+            this.rewardToolStripMenuItem,
+            this.updateToolStripMenuItem,
+            this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
@@ -64,65 +64,65 @@
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // файлToolStripMenuItem
+            // userToolStripMenuItem
             // 
-            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.добавитьToolStripMenuItem,
-            this.редактироватьToolStripMenuItem});
-            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
-            this.файлToolStripMenuItem.Text = "Пользователь";
+            this.userToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addUserToolStripMenuItem,
+            this.editUserToolStripMenuItem});
+            this.userToolStripMenuItem.Name = "userToolStripMenuItem";
+            this.userToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
+            this.userToolStripMenuItem.Text = "Пользователь";
             // 
-            // добавитьToolStripMenuItem
+            // addUserToolStripMenuItem
             // 
-            this.добавитьToolStripMenuItem.Name = "добавитьToolStripMenuItem";
-            this.добавитьToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.добавитьToolStripMenuItem.Text = "Добавить";
-            this.добавитьToolStripMenuItem.Click += new System.EventHandler(this.добавитьToolStripMenuItem_Click);
+            this.addUserToolStripMenuItem.Name = "addUserToolStripMenuItem";
+            this.addUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addUserToolStripMenuItem.Text = "Добавить";
+            this.addUserToolStripMenuItem.Click += new System.EventHandler(this.addUserToolStripMenuItem_Click);
             // 
-            // редактироватьToolStripMenuItem
+            // editUserToolStripMenuItem
             // 
-            this.редактироватьToolStripMenuItem.Name = "редактироватьToolStripMenuItem";
-            this.редактироватьToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.редактироватьToolStripMenuItem.Text = "Редактировать";
-            this.редактироватьToolStripMenuItem.Click += new System.EventHandler(this.редактироватьToolStripMenuItem_Click);
+            this.editUserToolStripMenuItem.Name = "editUserToolStripMenuItem";
+            this.editUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editUserToolStripMenuItem.Text = "Редактировать";
+            this.editUserToolStripMenuItem.Click += new System.EventHandler(this.editUserToolStripMenuItem_Click);
             // 
-            // наградаToolStripMenuItem
+            // rewardToolStripMenuItem
             // 
-            this.наградаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.добавитьToolStripMenuItem1,
-            this.редактироватьToolStripMenuItem1});
-            this.наградаToolStripMenuItem.Name = "наградаToolStripMenuItem";
-            this.наградаToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
-            this.наградаToolStripMenuItem.Text = "Награда";
+            this.rewardToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addRewardToolStripMenuItem1,
+            this.editRewardToolStripMenuItem1});
+            this.rewardToolStripMenuItem.Name = "rewardToolStripMenuItem";
+            this.rewardToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
+            this.rewardToolStripMenuItem.Text = "Награда";
             // 
-            // добавитьToolStripMenuItem1
+            // addRewardToolStripMenuItem1
             // 
-            this.добавитьToolStripMenuItem1.Name = "добавитьToolStripMenuItem1";
-            this.добавитьToolStripMenuItem1.Size = new System.Drawing.Size(154, 22);
-            this.добавитьToolStripMenuItem1.Text = "Добавить";
-            this.добавитьToolStripMenuItem1.Click += new System.EventHandler(this.добавитьToolStripMenuItem1_Click);
+            this.addRewardToolStripMenuItem1.Name = "addRewardToolStripMenuItem1";
+            this.addRewardToolStripMenuItem1.Size = new System.Drawing.Size(154, 22);
+            this.addRewardToolStripMenuItem1.Text = "Добавить";
+            this.addRewardToolStripMenuItem1.Click += new System.EventHandler(this.addRewardToolStripMenuItem1_Click);
             // 
-            // редактироватьToolStripMenuItem1
+            // editRewardToolStripMenuItem1
             // 
-            this.редактироватьToolStripMenuItem1.Name = "редактироватьToolStripMenuItem1";
-            this.редактироватьToolStripMenuItem1.Size = new System.Drawing.Size(154, 22);
-            this.редактироватьToolStripMenuItem1.Text = "Редактировать";
-            this.редактироватьToolStripMenuItem1.Click += new System.EventHandler(this.редактироватьToolStripMenuItem1_Click);
+            this.editRewardToolStripMenuItem1.Name = "editRewardToolStripMenuItem1";
+            this.editRewardToolStripMenuItem1.Size = new System.Drawing.Size(154, 22);
+            this.editRewardToolStripMenuItem1.Text = "Редактировать";
+            this.editRewardToolStripMenuItem1.Click += new System.EventHandler(this.editRewardToolStripMenuItem1_Click);
             // 
-            // обновитьToolStripMenuItem
+            // updateToolStripMenuItem
             // 
-            this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
-            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
-            this.обновитьToolStripMenuItem.Text = "Обновить";
-            this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.обновитьToolStripMenuItem_Click);
+            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
+            this.updateToolStripMenuItem.Text = "Обновить";
+            this.updateToolStripMenuItem.Click += new System.EventHandler(this.editRewardToolStripMenuItem1_Click);
             // 
-            // оПрограммеToolStripMenuItem
+            // aboutToolStripMenuItem
             // 
-            this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
-            this.оПрограммеToolStripMenuItem.Text = "О программе";
-            this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
+            this.aboutToolStripMenuItem.Text = "О программе";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // tabControl1
             // 
@@ -137,7 +137,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Controls.Add(this.userGridView);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPage1.Name = "tabPage1";
@@ -147,18 +147,18 @@
             this.tabPage1.Text = "Пользователи";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // userGridView
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(899, 661);
-            this.dataGridView1.TabIndex = 0;
+            this.userGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.userGridView.Location = new System.Drawing.Point(0, 0);
+            this.userGridView.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.userGridView.Name = "userGridView";
+            this.userGridView.Size = new System.Drawing.Size(899, 661);
+            this.userGridView.TabIndex = 0;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.dataGridView2);
+            this.tabPage2.Controls.Add(this.rewardGridView);
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPage2.Name = "tabPage2";
@@ -168,14 +168,14 @@
             this.tabPage2.Text = "Награды";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
+            // rewardGridView
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(899, 663);
-            this.dataGridView2.TabIndex = 11;
+            this.rewardGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.rewardGridView.Location = new System.Drawing.Point(0, 0);
+            this.rewardGridView.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.rewardGridView.Name = "rewardGridView";
+            this.rewardGridView.Size = new System.Drawing.Size(899, 663);
+            this.rewardGridView.TabIndex = 11;
             // 
             // MainForm
             // 
@@ -193,9 +193,9 @@
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userGridView)).EndInit();
             this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rewardGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -203,19 +203,19 @@
 
         #endregion
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem добавитьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem userToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addUserToolStripMenuItem;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.ToolStripMenuItem наградаToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem редактироватьToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem добавитьToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem редактироватьToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rewardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editUserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addRewardToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem editRewardToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.DataGridView rewardGridView;
+        private System.Windows.Forms.DataGridView userGridView;
+        private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem;
     }
 }
 

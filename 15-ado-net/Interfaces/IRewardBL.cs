@@ -10,6 +10,6 @@ namespace Interfaces
         void Add(Reward reward);
         void Remove(Reward reward);
         List<Reward> GetAll();
-        void Update(Reward reward, string title, string description);
+        void Update(int rewardId, Reward reward);
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Extensions.Configuration;
 using BLL;
+using DAL.Db;
 using DAL;
 
 namespace WinFormsApp1
@@ -26,9 +27,13 @@ namespace WinFormsApp1
             var config = configurationBuilder.Build();
             var connectionString = config["ConnectionString"];
 
-            var userDAO = new UserListDAO(connectionString);
-            var rewardDAO = new RewardListDAO(connectionString);
+            var userDAO = new UserDbDAO(connectionString);
+            var rewardDAO = new RewardDbDAO(connectionString);
             Application.Run(new MainForm(new UserBL(userDAO), new RewardBL(rewardDAO)));
+
+            //var userDAO = new UserListDAO();
+            //var rewardDAO = new RewardListDAO(userDAO);
+            //Application.Run(new MainForm(new UserBL(userDAO), new RewardBL(rewardDAO)));
         }
     }
 }

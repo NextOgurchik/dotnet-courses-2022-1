@@ -20,8 +20,8 @@ namespace WinFormsApp1
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             var userDAO = new UserListDAO();
-            var rewardDAO = new RewardListDAO();
-            Application.Run(new MainForm(new UserBL(userDAO), new RewardBL(rewardDAO)));
+            var rewardDAO = new RewardListDAO(userDAO);
+            Application.Run(new MainForm(new UserBL(userDAO), new RewardBL(rewardDAO, userDAO)));
         }
     }
 }

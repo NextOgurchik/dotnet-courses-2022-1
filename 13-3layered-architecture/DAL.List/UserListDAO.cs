@@ -21,17 +21,6 @@ namespace DAL
         {
             return listUser.ToList();
         }
-        public void Remove(int id)
-        {
-            for (int i = 0; i < listUser.Count; i++)
-            {
-                if (listUser[i].Id == id)
-                {
-                    listUser.RemoveAt(i);
-                    break;
-                }
-            }
-        }
         public void Update(User user, string firstName, string lastName, DateTime birthdate)
         {
             user.FirstName = firstName;

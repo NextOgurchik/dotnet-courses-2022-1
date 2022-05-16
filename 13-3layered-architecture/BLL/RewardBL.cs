@@ -9,9 +9,11 @@ namespace BLL
     public class RewardBL: IRewardBL
     {
         private IRewardDAO _rewardDAO;
-        public RewardBL(IRewardDAO rewardDAO)
+        private IUserDAO _userDAO;
+        public RewardBL(IRewardDAO rewardDAO, IUserDAO userDAO)
         {
             _rewardDAO = rewardDAO;
+            _userDAO = userDAO;
         }
         public List<Reward> GetAll()
         {

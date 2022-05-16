@@ -11,6 +11,6 @@ namespace Interfaces
         List<User> GetAll();
         void AddReward(User user, Reward reward);
         void RemoveReward(User user, Reward reward);
-        void Update(User user, string firstName, string lastName, DateTime birthdate);
+        void Update(int userId, User user);
     }
 }

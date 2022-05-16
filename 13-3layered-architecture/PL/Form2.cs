@@ -297,10 +297,6 @@ namespace WinFormsApp1
                 DialogResult dialogResult = MessageBox.Show("Удаление данных", "Вы действительно хотите удалить эту награду?", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    for (int i = 0; i < users.Count; i++)
-                    {
-                        userBL.RemoveReward(users[i], rewards[number]);
-                    }
                     rewardBL.Remove(rewards[number]);
                     Close();
                 }

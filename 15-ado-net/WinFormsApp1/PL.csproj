@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj" />
+    <ProjectReference Include="..\DAL.List\DAL.List.csproj" />
+    <ProjectReference Include="..\DAL\DAL.Db.csproj" />
     <ProjectReference Include="..\Entities\Entities.csproj" />
     <ProjectReference Include="..\Interfaces\Interfaces.csproj" />
   </ItemGroup>

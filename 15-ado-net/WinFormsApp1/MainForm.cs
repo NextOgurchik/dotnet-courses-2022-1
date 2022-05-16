@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using BLL;
-using DAL;
 using Interfaces;
 
 namespace WinFormsApp1
@@ -18,51 +16,53 @@ namespace WinFormsApp1
             this.rewardBL = rewardBL;
             InitializeComponent();
         }
-
+        private enum mode
+        {
+            Standart,
+            AddUser,
+            EditUser,
+            AddReward,
+            EditReward
+        }
         private void MainForm_Load(object sender, EventArgs e)
-        {                   
-            dataGridView1.DataSource = new MyBindingList<User>(userBL.GetAll().ToArray());
-            dataGridView2.DataSource = new MyBindingList<Reward>(rewardBL.GetAll().ToArray());
+        {
+            userGridView.DataSource = new MyBindingList<User>(userBL.GetAll().ToArray());
+            rewardGridView.DataSource = new MyBindingList<Reward>(rewardBL.GetAll().ToArray());
         }
 
-        private void добавитьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void addUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form2 f = new Form2(1, userBL, rewardBL);
+            AddEditForm f = new AddEditForm(Convert.ToInt32(mode.AddUser), userBL, rewardBL);
             f.ShowDialog();
         }
 
-        private void редактироватьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void editUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form2 f = new Form2(2, userBL, rewardBL);
+            AddEditForm f = new AddEditForm(Convert.ToInt32(mode.EditUser), userBL, rewardBL);
             f.ShowDialog();
         }
 
-        private void добавитьToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void addRewardToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Form2 f = new Form2(3, userBL, rewardBL);
+            AddEditForm f = new AddEditForm(Convert.ToInt32(mode.AddReward), userBL, rewardBL);
             f.ShowDialog();
         }
 
-        private void редактироватьToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void editRewardToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Form2 f = new Form2(4, userBL, rewardBL);
+            AddEditForm f = new AddEditForm(Convert.ToInt32(mode.EditReward), userBL, rewardBL);
             f.ShowDialog();
         }
 
-        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Разработчик: Федотов Михаил.");
         }
 
-        private void dataGridView2_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            
-        }
-
         private void обновитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = new MyBindingList<User>(userBL.GetAll().ToArray());
-            dataGridView2.DataSource = new MyBindingList<Reward>(rewardBL.GetAll().ToArray());
+            userGridView.DataSource = new MyBindingList<User>(userBL.GetAll().ToArray());
+            rewardGridView.DataSource = new MyBindingList<Reward>(rewardBL.GetAll().ToArray());
         }
     }
 }

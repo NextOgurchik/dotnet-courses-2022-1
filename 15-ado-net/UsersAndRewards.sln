@@ -7,11 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PL", "WinFormsApp1\PL.cspro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{8874C01A-5FE9-4D37-AB89-0844F3DD6C7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{DCC757D6-ACDE-4772-80E1-332A71901DA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BLL\BLL.csproj", "{DCC757D6-ACDE-4772-80E1-332A71901DA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{1DC88E5E-FB4C-4415-8545-AF6DD3E9F5B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL.Db", "DAL\DAL.Db.csproj", "{1DC88E5E-FB4C-4415-8545-AF6DD3E9F5B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{98C16520-AD87-4920-A1FD-20C9BFD3EB97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interfaces", "Interfaces\Interfaces.csproj", "{98C16520-AD87-4920-A1FD-20C9BFD3EB97}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL.List", "DAL.List\DAL.List.csproj", "{9867B8EB-055A-4796-A748-5D5CD55392D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{98C16520-AD87-4920-A1FD-20C9BFD3EB97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98C16520-AD87-4920-A1FD-20C9BFD3EB97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98C16520-AD87-4920-A1FD-20C9BFD3EB97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9867B8EB-055A-4796-A748-5D5CD55392D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9867B8EB-055A-4796-A748-5D5CD55392D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9867B8EB-055A-4796-A748-5D5CD55392D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9867B8EB-055A-4796-A748-5D5CD55392D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
