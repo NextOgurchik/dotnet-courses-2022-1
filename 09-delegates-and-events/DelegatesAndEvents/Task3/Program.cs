@@ -4,15 +4,37 @@ using System.Threading.Tasks;
 
 namespace Task3
 {
+    public class EndSortEventArgs:EventArgs
+    {
+        public string[] Array { get; set; }
+        public EndSortEventArgs(string[] array)
+        {
+            Array = array;
+        }
+    }
     internal class Program
     {
-        static Task SortAsync(string[] array, Func<string, string, int> Comparer)
+        public static event EventHandler<EndSortEventArgs> EndSort;
+        static Thread SortAsync(string[] array, Func<string, string, int> Comparer)
         {
-            Task task = Task.Factory.StartNew(() => { Go(array, Comparer); });
-            Task.WaitAll(task);
-            return task;
+            Thread thread = new Thread(() => {
+            Sort(array, Comparer);
+            EndSort?.Invoke(null, new EndSortEventArgs(array));
+            });
+            thread.Start();
+            return thread;
         }
-        static void Go(string[] array, Func<string, string, int> Comparer)
+
+        private static void ThreadEndSort(object sender, EndSortEventArgs e)
+        {
+            Console.WriteLine("Массив отсортирован");
+            foreach (var item in e.Array)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        static void Sort(string[] array, Func<string, string, int> Comparer)
         {
             for (int i = 0; i < array.Length; i++)
             {
@@ -62,11 +84,8 @@ namespace Task3
         static void Main(string[] args)
         {
             var str = new string[7] { "AB", "A", "B", "BA", "B", "CA", "A" };
-            SortAsync(str, CompareStrings);
-            foreach (var item in str)
-            {
-                Console.WriteLine(item);
-            }
+            EndSort += ThreadEndSort;
+            var thread = SortAsync(str, CompareStrings);
         }
     }
 }

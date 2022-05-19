@@ -21,11 +21,11 @@ namespace DAL
         {
             return listUser.ToList();
         }
-        public void Update(int userId, User user)
+        public void Update(User user)
         {
             for (int i = 0; i < listUser.Count; i++)
             {
-                if (listUser[i].Id == userId)
+                if (listUser[i].Id == user.Id)
                 {
                     listUser[i].FirstName = user.FirstName;
                     listUser[i].LastName = user.LastName;

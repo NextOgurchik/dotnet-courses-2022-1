@@ -25,9 +25,9 @@ namespace BLL
             _userDAO.Remove(user);
         }
 
-        public void Update(int userId, User user)
+        public void Update(User user)
         {
-            _userDAO.Update(userId, user);
+            _userDAO.Update(user);
         }
 
         public void AddReward(User user, Reward reward)

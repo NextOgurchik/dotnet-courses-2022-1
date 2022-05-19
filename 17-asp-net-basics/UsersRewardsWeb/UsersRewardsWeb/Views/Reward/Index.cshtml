@@ -1,0 +1,29 @@
+﻿@using Entities
+ @model IList<Reward>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Награды</h1>
+
+<table>
+    <tr>
+        <th>Название</th>
+        <th>Описание</th>
+    </tr>
+    @foreach (var reward in Model)
+    {
+        <tr>
+            <td>@reward.Title</td>
+            <td>@reward.Description</td>
+            <td><a asp-controller="Reward" asp-action="Update" asp-route-id="@reward.Id">Изменить</a></td>
+            <td><form asp-controller="Reward" asp-action="Remove">
+            <input type="hidden" value="@reward.Id" name="id"/>
+            <button type="submit">Удалить</button>
+        </form></td>
+        </tr>
+    }
+</table>
+<br/>
+<a asp-controller="Reward" asp-action="Add">Добавить награду</a>

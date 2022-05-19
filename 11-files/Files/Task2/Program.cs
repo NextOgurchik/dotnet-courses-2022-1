@@ -1,90 +1,123 @@
 ﻿using System;
 using System.IO;
+using Microsoft.Extensions.Configuration;
 
 namespace Task2
 {
     class Program
     {
         static FileSystemWatcher fsw;
-        static void ModeSelector(string mode)
+        static string currentDirectory;
+        static string backupDirectory;
+        private enum Mode
         {
-            if (mode == "1")
+            Watcher,
+            Rollback
+        }
+        static void ModeSelector(int mode)
+        {
+            if (Convert.ToInt32(Mode.Watcher) == mode)
             {
-                using (fsw = new FileSystemWatcher(Directory.GetCurrentDirectory()))
+                using (fsw = new FileSystemWatcher(currentDirectory))
                 {
+                    fsw.IncludeSubdirectories = true;
                     fsw.Filter = "*.txt";
                     fsw.Changed += Fsw_Changed;
+                    fsw.Created += Fsw_Created;
+                    fsw.Deleted += Fsw_Deleted;
+                    fsw.Renamed += Fsw_Renamed;
                     fsw.EnableRaisingEvents = true;
                     Console.WriteLine("Включён режим наблюдения");
                     Console.ReadLine();
                     Console.WriteLine("Режим наблюдения выключен");
                 };
             }
-            else if (mode == "2")
+            else if (Convert.ToInt32(Mode.Rollback) == mode)
             {
                 Console.WriteLine("Включён режим отката изменений");
-                DirectoryInfo dir = new DirectoryInfo(Directory.GetCurrentDirectory());
-                DirectoryInfo backup = new DirectoryInfo($@"{Directory.GetCurrentDirectory()}\Backup");
-
-                FileInfo[] txtFiles = dir.GetFiles("*.txt");
-                FileInfo[] bFiles = backup.GetFiles("*.txt");
-
-                foreach (FileInfo f in txtFiles)
-                {
-                    Console.WriteLine("\n******************\n");
-                    Console.WriteLine("Имя файла: " + f.Name);
-                    Console.WriteLine("Время последнего изменения файла: " + f.LastWriteTime);
-                }
-
-                Console.WriteLine();
                 Console.Write("Введите дату отката изменений: ");
                 DateTime dateTime = Convert.ToDateTime(Console.ReadLine());
-                foreach (FileInfo f in txtFiles)
+                DateTime maxDateTime = DateTime.MinValue;
+                string pathToUpdate = currentDirectory;
+                foreach (var path in Directory.GetDirectories(backupDirectory))
                 {
-                    string curName = null;
-                    var cur = f;
-                    bool sw = false;
-                    foreach (FileInfo f2 in bFiles)
+                    DateTime dateTime1 = Directory.GetCreationTime(path);
+                    if (dateTime1 < dateTime)
                     {
-                        if (f2.Name.Contains(f.Name))
+                        if (dateTime1 > maxDateTime)
                         {
-                            if (curName == null && dateTime.CompareTo(f2.LastWriteTime) > -1)
-                            {
-                                curName = f2.Name;
-                                cur = f2;
-                            }
-
-                            if (dateTime.CompareTo(f2.LastWriteTime) > -1 && cur.LastWriteTime.CompareTo(f2.LastWriteTime) < 1)
-                            {
-                                curName = f2.Name;
-                                cur = f2;
-                                sw = true;
-                            }
+                            maxDateTime = dateTime1;
+                            pathToUpdate = path;
                         }
                     }
+                }
+                if (pathToUpdate != currentDirectory)
+                {
+                    Directory.Delete(currentDirectory, true);
+                    Directory.CreateDirectory(currentDirectory);
 
-                    if (cur != f && sw)
+                    foreach (string dirPath in Directory.GetDirectories(pathToUpdate, "*",
+                    SearchOption.AllDirectories))
                     {
-                        File.Copy(cur.FullName, f.FullName, true);
-                        Console.WriteLine($"Файл {f.Name} изменён на {cur.Name}");
+                        try
+                        {
+                            Directory.CreateDirectory(dirPath.Replace(pathToUpdate, currentDirectory));
+                        }
+                        catch { }
                     }
-                    else
+
+                    foreach (string newPath in Directory.GetFiles(pathToUpdate, "*.*",
+                        SearchOption.AllDirectories))
                     {
-                        f.Delete();
-                        Console.WriteLine($"Файл {f.Name} был удалён");
+                        try
+                        {
+                            File.Copy(newPath, newPath.Replace(pathToUpdate, currentDirectory), true);
+                        }
+                        catch { }
                     }
-                    curName = null;
                 }
             }
         }
-        static void Main(string[] args)
+
+        private static void Fsw_Renamed(object sender, RenamedEventArgs e)
         {
-            string mode = "1";
-            while (mode == "1" || mode == "2")
+            fsw.EnableRaisingEvents = false;
+            try
             {
-                Console.Write("Выберите режим (1 - для наблюдения, 2 - для отката изменений): ");
-                mode = Console.ReadLine();
-                ModeSelector(mode);
+                CreateBackup();
+                Console.WriteLine($"Файл {e.Name} был переименован.");
+            }
+            finally
+            {
+                fsw.EnableRaisingEvents = true;
+            }
+        }
+
+        private static void Fsw_Deleted(object sender, FileSystemEventArgs e)
+        {
+            fsw.EnableRaisingEvents = false;
+            try
+            {
+                CreateBackup();
+                Console.WriteLine($"Файл {e.Name} был удалён.");
+            }
+            finally
+            {
+                fsw.EnableRaisingEvents = true;
+            }
+        }
+
+        private static void Fsw_Created(object sender, FileSystemEventArgs e)
+        {
+            fsw.EnableRaisingEvents = false;
+            try
+            {
+                CreateBackup();
+                Console.WriteLine($"Файл {e.Name} был создан.");
+            }
+            finally
+            {
+                fsw.EnableRaisingEvents = true;
             }
         }
 
@@ -93,13 +126,52 @@ namespace Task2
             fsw.EnableRaisingEvents = false;
             try
             {
-                string dateTimeNow = $"{DateTime.Now.Day}_{DateTime.Now.Month}_{DateTime.Now.Year}_{DateTime.Now.Hour}-{DateTime.Now.Minute}-{DateTime.Now.Second}";
-                File.Copy(e.Name, $@"{Directory.GetCurrentDirectory()}\Backup\{dateTimeNow}{e.Name}");
-                Console.WriteLine($"Файл {e.Name} изменился");
+                CreateBackup();
+                Console.WriteLine($"Файл {e.Name} изменился.");
             }
             finally
             {
                 fsw.EnableRaisingEvents = true;
+            }
+        }
+        private static void CreateBackup()
+        {
+            string backupDirectoryNow = $@"{backupDirectory}\{DateTime.Now.Day}_{DateTime.Now.Month}_{DateTime.Now.Year}_{DateTime.Now.Hour}-{DateTime.Now.Minute}-{DateTime.Now.Second}";
+            Directory.CreateDirectory(backupDirectoryNow);
+            foreach (string dirPath in Directory.GetDirectories(currentDirectory, "*",
+                SearchOption.AllDirectories))
+            {
+                try
+                {
+                    Directory.CreateDirectory(dirPath.Replace(currentDirectory, backupDirectoryNow));
+                }
+                catch { }
+            }
+
+
+            foreach (string newPath in Directory.GetFiles(currentDirectory, "*.*",
+                SearchOption.AllDirectories))
+            {
+                try
+                {
+                    File.Copy(newPath, newPath.Replace(currentDirectory, backupDirectoryNow), true);
+                }
+                catch { }
+            }
+        }
+        static void Main(string[] args)
+        {
+            ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
+            configurationBuilder.AddJsonFile("appConfig.json");
+            var config = configurationBuilder.Build();
+            currentDirectory = config["CurrentDirectory"];
+            backupDirectory = config["BackupDirectory"];
+            string mode = "0";
+            while (mode == "0" || mode == "1")
+            {
+                Console.Write("Выберите режим (0 - для наблюдения, 1 - для отката изменений): ");
+                mode = Console.ReadLine();
+                ModeSelector(Convert.ToInt32(mode));
             }
         }
     }

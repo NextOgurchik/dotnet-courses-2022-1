@@ -29,12 +29,6 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rewardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addRewardToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.editRewardToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -42,6 +36,10 @@
             this.userGridView = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.rewardGridView = new System.Windows.Forms.DataGridView();
+            this.createUser = new System.Windows.Forms.Button();
+            this.createReward = new System.Windows.Forms.Button();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -53,8 +51,6 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.userToolStripMenuItem,
-            this.rewardToolStripMenuItem,
             this.updateToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -64,65 +60,19 @@
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // userToolStripMenuItem
-            // 
-            this.userToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addUserToolStripMenuItem,
-            this.editUserToolStripMenuItem});
-            this.userToolStripMenuItem.Name = "userToolStripMenuItem";
-            this.userToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
-            this.userToolStripMenuItem.Text = "Пользователь";
-            // 
-            // addUserToolStripMenuItem
-            // 
-            this.addUserToolStripMenuItem.Name = "addUserToolStripMenuItem";
-            this.addUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.addUserToolStripMenuItem.Text = "Добавить";
-            this.addUserToolStripMenuItem.Click += new System.EventHandler(this.addUserToolStripMenuItem_Click);
-            // 
-            // editUserToolStripMenuItem
-            // 
-            this.editUserToolStripMenuItem.Name = "editUserToolStripMenuItem";
-            this.editUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.editUserToolStripMenuItem.Text = "Редактировать";
-            this.editUserToolStripMenuItem.Click += new System.EventHandler(this.editUserToolStripMenuItem_Click);
-            // 
-            // rewardToolStripMenuItem
-            // 
-            this.rewardToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addRewardToolStripMenuItem1,
-            this.editRewardToolStripMenuItem1});
-            this.rewardToolStripMenuItem.Name = "rewardToolStripMenuItem";
-            this.rewardToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
-            this.rewardToolStripMenuItem.Text = "Награда";
-            // 
-            // addRewardToolStripMenuItem1
-            // 
-            this.addRewardToolStripMenuItem1.Name = "addRewardToolStripMenuItem1";
-            this.addRewardToolStripMenuItem1.Size = new System.Drawing.Size(154, 22);
-            this.addRewardToolStripMenuItem1.Text = "Добавить";
-            this.addRewardToolStripMenuItem1.Click += new System.EventHandler(this.addRewardToolStripMenuItem1_Click);
-            // 
-            // editRewardToolStripMenuItem1
-            // 
-            this.editRewardToolStripMenuItem1.Name = "editRewardToolStripMenuItem1";
-            this.editRewardToolStripMenuItem1.Size = new System.Drawing.Size(154, 22);
-            this.editRewardToolStripMenuItem1.Text = "Редактировать";
-            this.editRewardToolStripMenuItem1.Click += new System.EventHandler(this.editRewardToolStripMenuItem1_Click);
-            // 
             // updateToolStripMenuItem
             // 
             this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
             this.updateToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
             this.updateToolStripMenuItem.Text = "Обновить";
-            this.updateToolStripMenuItem.Click += new System.EventHandler(this.editRewardToolStripMenuItem1_Click);
+            this.updateToolStripMenuItem.Click += new System.EventHandler(this.UpdateToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.aboutToolStripMenuItem.Text = "О программе";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // tabControl1
             // 
@@ -153,8 +103,9 @@
             this.userGridView.Location = new System.Drawing.Point(0, 0);
             this.userGridView.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.userGridView.Name = "userGridView";
-            this.userGridView.Size = new System.Drawing.Size(899, 661);
+            this.userGridView.Size = new System.Drawing.Size(899, 660);
             this.userGridView.TabIndex = 0;
+            this.userGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.UserGridView_CellClick);
             // 
             // tabPage2
             // 
@@ -176,13 +127,60 @@
             this.rewardGridView.Name = "rewardGridView";
             this.rewardGridView.Size = new System.Drawing.Size(899, 663);
             this.rewardGridView.TabIndex = 11;
+            this.rewardGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RewardGridView_CellClick);
+            // 
+            // createUser
+            // 
+            this.createUser.Location = new System.Drawing.Point(18, 729);
+            this.createUser.Name = "createUser";
+            this.createUser.Size = new System.Drawing.Size(141, 32);
+            this.createUser.TabIndex = 1;
+            this.createUser.Text = "Создать пользователя";
+            this.createUser.UseVisualStyleBackColor = true;
+            this.createUser.Click += new System.EventHandler(this.CreateUser_Click);
+            // 
+            // createReward
+            // 
+            this.createReward.Location = new System.Drawing.Point(165, 729);
+            this.createReward.Name = "createReward";
+            this.createReward.Size = new System.Drawing.Size(141, 32);
+            this.createReward.TabIndex = 12;
+            this.createReward.Text = "Создать награду";
+            this.createReward.UseVisualStyleBackColor = true;
+            this.createReward.Click += new System.EventHandler(this.CreateReward_Click);
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(763, 742);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(79, 19);
+            this.radioButton1.TabIndex = 13;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Изменить";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(848, 742);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(69, 19);
+            this.radioButton2.TabIndex = 14;
+            this.radioButton2.Text = "Удалить";
+            this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(934, 736);
+            this.ClientSize = new System.Drawing.Size(934, 773);
+            this.Controls.Add(this.createReward);
+            this.Controls.Add(this.createUser);
+            this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -203,19 +201,17 @@
 
         #endregion
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem userToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addUserToolStripMenuItem;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.ToolStripMenuItem rewardToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editUserToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addRewardToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem editRewardToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.DataGridView rewardGridView;
         private System.Windows.Forms.DataGridView userGridView;
+        private System.Windows.Forms.Button createUser;
+        private System.Windows.Forms.Button createReward;
         private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
     }
 }
 

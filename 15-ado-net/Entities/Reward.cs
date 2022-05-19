@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Entities
 {
@@ -24,7 +25,7 @@ namespace Entities
             get { return description; }
             set
             {
-                if (value.Length > 250)
+                if (value != null && value.Length > 250)
                 {
                     throw new Exception("The string is too long.");
                 }
@@ -46,6 +47,10 @@ namespace Entities
             Id = id;
             Title = title;
             Description = description;
+        }
+        public Reward()
+        {
+
         }
     }
 }

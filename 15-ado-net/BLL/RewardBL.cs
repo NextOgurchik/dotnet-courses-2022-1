@@ -25,9 +25,9 @@ namespace BLL
         {
             _rewardDAO.Remove(reward);
         }
-        public void Update(int rewardId, Reward reward)
+        public void Update(Reward reward)
         {
-            _rewardDAO.Update(rewardId, reward);
+            _rewardDAO.Update(reward);
         }
     }
 }

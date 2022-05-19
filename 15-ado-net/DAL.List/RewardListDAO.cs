@@ -26,11 +26,11 @@ namespace DAL
             }
             listReward.Remove(reward);
         }
-        public void Update(int rewardId, Reward reward)
+        public void Update(Reward reward)
         {
             for (int i = 0; i < listReward.Count; i++)
             {
-                if (listReward[i].Id == rewardId)
+                if (listReward[i].Id == reward.Id)
                 {
                     listReward[i].Title = reward.Title;
                     listReward[i].Description = reward.Description;

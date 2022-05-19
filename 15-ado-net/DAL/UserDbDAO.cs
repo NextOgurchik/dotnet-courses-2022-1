@@ -75,14 +75,14 @@ namespace DAL.Db
             }
             return listUser;
         }
-        public void Update(int userId, User user)
+        public void Update(User user)
         {
             using (var connection = new SqlConnection(connectionString))
             using (var command = new SqlCommand("UpdateUser", connection))
             {
                 connection.Open();
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("id", SqlDbType.Int).Value = userId;
+                command.Parameters.Add("id", SqlDbType.Int).Value = user.Id;
                 command.Parameters.Add("FirstName", SqlDbType.NVarChar).Value = user.FirstName;
                 command.Parameters.Add("LastName", SqlDbType.NVarChar).Value = user.LastName;
                 command.Parameters.Add("Birthdate", SqlDbType.Date).Value = user.Birthdate;

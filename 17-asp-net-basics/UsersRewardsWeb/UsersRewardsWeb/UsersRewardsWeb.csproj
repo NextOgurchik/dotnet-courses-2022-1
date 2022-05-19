@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.23" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.25" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\15-ado-net\BLL\BLL.csproj" />
+    <ProjectReference Include="..\..\..\15-ado-net\DAL.List\DAL.List.csproj" />
+    <ProjectReference Include="..\..\..\15-ado-net\DAL\DAL.Db.csproj" />
+    <ProjectReference Include="..\..\..\15-ado-net\Entities\Entities.csproj" />
+  </ItemGroup>
+
+</Project>

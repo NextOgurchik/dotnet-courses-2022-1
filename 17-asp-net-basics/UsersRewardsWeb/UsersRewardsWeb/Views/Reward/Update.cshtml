@@ -1,0 +1,23 @@
+﻿@using UsersRewardsWeb.Models.Entities
+@model RewardViewModel
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Изменить пользователя</h1>
+
+<form asp-controller="Reward" asp-action="Update">
+    <input asp-for="Id" type="hidden"/>
+    <br/>
+    <label asp-for="Title">Название</label>
+    <input asp-for="Title"/>
+    <span style="color:red" asp-validation-for="Title"></span>
+    <br/>
+    <br/>
+    <label asp-for="Description">Описание</label>
+    <input asp-for="Description"/>
+    <br/>
+    <br/>
+    <button type="submit">Сохранить</button>
+</form>
+

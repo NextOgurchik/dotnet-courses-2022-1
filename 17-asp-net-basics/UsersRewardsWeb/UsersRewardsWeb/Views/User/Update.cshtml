@@ -1,0 +1,54 @@
+﻿@using Entities
+@using UsersRewardsWeb.Models
+@model UserViewModel
+
+@{
+   ViewData["Title"] = "Update";
+}
+
+<h1>Изменить пользователя</h1>
+
+<form asp-controller="User" asp-action="Update">
+    <input asp-for="Id" type="hidden"/>
+    <br/>
+    <label asp-for="FirstName">Имя</label>
+    <input asp-for="FirstName"/>
+    <span style="color:red" asp-validation-for="FirstName"></span>
+    <br/>
+    <br/>
+    <label asp-for="LastName">Фамилия</label>
+    <input asp-for="LastName"/>
+    <span style="color:red" asp-validation-for="LastName"></span>
+    <br/>
+    <br/>
+    <label asp-for="Birthdate">Дата рождения</label>
+    <input asp-for="Birthdate" type="date"/>
+    <span style="color:red" asp-validation-for="Birthdate"></span>
+    <br/>
+    <br/>
+    <label>Награды</label>
+    @for (int i = 0; i < @Model.Rewards.Count; i++)
+    {
+        bool isAwarded = false;
+        @for(int j = 0; j < Model.ListReward.Count; j++)
+        {
+            @if (Model.ListReward[j].Id == @Model.Rewards[i].Id)
+            {
+                isAwarded = true;
+            }
+        }
+        @if (isAwarded)
+        {
+            <input type="checkbox" id="@Model.Rewards[i].Title" name="userAwarded" value="@Model.Rewards[i].Id" checked>
+        }
+        else
+        {
+            <input type="checkbox" id="@Model.Rewards[i].Title" name="userAwarded" value="@Model.Rewards[i].Id">
+        }
+        <label asp-for="ListReward[i]">@Model.Rewards[i].Title</label>
+    }
+    <br/>
+    <br/>
+    <button type="submit">Сохранить</button>
+</form>
+

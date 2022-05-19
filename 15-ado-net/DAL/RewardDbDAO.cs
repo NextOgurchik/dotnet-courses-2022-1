@@ -22,7 +22,14 @@ namespace DAL.Db
                 connection.Open();
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("title", SqlDbType.NVarChar).Value = reward.Title;
-                command.Parameters.Add("description", SqlDbType.NVarChar).Value = reward.Description;
+                if (reward.Description == null)
+                {
+                    command.Parameters.Add("description", SqlDbType.NVarChar).Value = "";
+                }
+                else
+                {
+                    command.Parameters.Add("description", SqlDbType.NVarChar).Value = reward.Description;
+                }
                 command.ExecuteNonQuery();
             }
         }
@@ -37,16 +44,23 @@ namespace DAL.Db
                 command.ExecuteNonQuery();
             }
         }
-        public void Update(int rewardId, Reward reward)
+        public void Update(Reward reward)
         {
             using (var connection = new SqlConnection(connectionString))
             using (var command = new SqlCommand("UpdateReward", connection))
             {
                 connection.Open();
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("id", SqlDbType.Int).Value = rewardId;
+                command.Parameters.Add("id", SqlDbType.Int).Value = reward.Id;
                 command.Parameters.Add("title", SqlDbType.NVarChar).Value = reward.Title;
-                command.Parameters.Add("description", SqlDbType.NVarChar).Value = reward.Description;
+                if (reward.Description == null)
+                {
+                    command.Parameters.Add("description", SqlDbType.NVarChar).Value = "";
+                }
+                else
+                {
+                    command.Parameters.Add("description", SqlDbType.NVarChar).Value = reward.Description;
+                }
                 command.ExecuteNonQuery();
             }
         }

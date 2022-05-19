@@ -95,6 +95,7 @@ namespace Entities
             Birthdate = birthdate;
             ListReward = new List<Reward>();
         }
+        public User() { }
         public void AddReward(Reward reward)
         {
             ListReward.Add(reward);
