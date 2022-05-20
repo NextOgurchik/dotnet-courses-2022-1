@@ -16,9 +16,13 @@ namespace BLL
         {
             return _userDAO.GetAll();
         }
-        public void Add(User user)
+        public User Get(int id)
         {
-            _userDAO.Add(user);
+            return _userDAO.Get(id);
+        }
+        public int Add(User user)
+        {
+            return _userDAO.Add(user);
         }
         public void Remove(User user)
         {

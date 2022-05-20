@@ -5,8 +5,6 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersRewardsWeb", "UsersRewardsWeb\UsersRewardsWeb.csproj", "{F5835ECB-27F8-47A6-91A9-F0AA898A4BA3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL.List", "..\..\15-ado-net\DAL.List\DAL.List.csproj", "{75D0456D-9228-4AEF-A0DB-DCE61DAC74A4}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "..\..\15-ado-net\BLL\BLL.csproj", "{88C590DD-98E6-4F07-8DC8-DCD63D137416}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "..\..\15-ado-net\Entities\Entities.csproj", "{E2C1873F-4CE6-436F-B176-2C8D2C24AB3F}"
@@ -27,10 +25,6 @@ Global
 		{F5835ECB-27F8-47A6-91A9-F0AA898A4BA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5835ECB-27F8-47A6-91A9-F0AA898A4BA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5835ECB-27F8-47A6-91A9-F0AA898A4BA3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{75D0456D-9228-4AEF-A0DB-DCE61DAC74A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{75D0456D-9228-4AEF-A0DB-DCE61DAC74A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{75D0456D-9228-4AEF-A0DB-DCE61DAC74A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{75D0456D-9228-4AEF-A0DB-DCE61DAC74A4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{88C590DD-98E6-4F07-8DC8-DCD63D137416}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{88C590DD-98E6-4F07-8DC8-DCD63D137416}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88C590DD-98E6-4F07-8DC8-DCD63D137416}.Release|Any CPU.ActiveCfg = Release|Any CPU

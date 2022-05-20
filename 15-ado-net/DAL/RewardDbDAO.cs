@@ -4,6 +4,7 @@ using Interfaces;
 using System.Linq;
 using System.Data;
 using System.Data.SqlClient;
+using System;
 
 namespace DAL.Db
 {
@@ -14,7 +15,24 @@ namespace DAL.Db
         {
             this.connectionString = connectionString;
         }
-        public void Add(Reward reward)
+        public Reward Get(int id)
+        {
+            var reward = new Reward();
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand("GetReward", connection))
+            {
+                connection.Open();
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("Id", SqlDbType.Int).Value = id;
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    reward = new Reward(reader.GetInt32(0), reader.GetString(1), reader.IsDBNull(2) ? null : reader.GetString(2));
+                }
+                return reward;
+            }
+        }
+        public int Add(Reward reward)
         {
             using (var connection = new SqlConnection(connectionString))
             using (var command = new SqlCommand("AddReward", connection))
@@ -30,7 +48,8 @@ namespace DAL.Db
                 {
                     command.Parameters.Add("description", SqlDbType.NVarChar).Value = reward.Description;
                 }
-                command.ExecuteNonQuery();
+
+                return Convert.ToInt32(command.ExecuteScalar());
             }
         }
         public void Remove(Reward reward)

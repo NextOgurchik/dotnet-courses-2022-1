@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\15-ado-net\BLL\BLL.csproj" />
-    <ProjectReference Include="..\..\..\15-ado-net\DAL.List\DAL.List.csproj" />
     <ProjectReference Include="..\..\..\15-ado-net\DAL\DAL.Db.csproj" />
     <ProjectReference Include="..\..\..\15-ado-net\Entities\Entities.csproj" />
   </ItemGroup>

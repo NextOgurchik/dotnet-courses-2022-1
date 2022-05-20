@@ -17,9 +17,13 @@ namespace BLL
         {
             return _rewardDAO.GetAll();
         }
-        public void Add(Reward reward)
+        public Reward Get(int id)
         {
-            _rewardDAO.Add(reward);
+            return _rewardDAO.Get(id);
+        }
+        public int Add(Reward reward)
+        {
+            return _rewardDAO.Add(reward);
         }
         public void Remove(Reward reward)
         {

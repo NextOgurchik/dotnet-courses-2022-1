@@ -7,7 +7,8 @@ namespace Interfaces
 {
     public interface IUserBL
     {
-        void Add(User user);
+        int Add(User user);
+        User Get(int id);
         void Remove(User user);
         List<User> GetAll();
         void AddReward(User user, Reward reward);

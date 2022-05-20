@@ -14,19 +14,19 @@ namespace Task2
             var person3 = new Person("Хьюго");
 
             office.Come(person1);
-            Console.WriteLine("");
+            Console.WriteLine();
 
             office.Come(person2);
-            Console.WriteLine("");
+            Console.WriteLine();
 
             office.Come(person3);
-            Console.WriteLine("");
+            Console.WriteLine();
 
             office.Leave(person1);
-            Console.WriteLine("");
+            Console.WriteLine();
 
             office.Leave(person2);
-            Console.WriteLine("");
+            Console.WriteLine();
 
             office.Leave(person3);
         }

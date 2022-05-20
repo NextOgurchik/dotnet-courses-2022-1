@@ -7,7 +7,8 @@ namespace Interfaces
 {
     public interface IRewardBL
     {
-        void Add(Reward reward);
+        int Add(Reward reward);
+        Reward Get(int id);
         void Remove(Reward reward);
         List<Reward> GetAll();
         void Update(Reward reward);

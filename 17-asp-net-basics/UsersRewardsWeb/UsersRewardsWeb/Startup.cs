@@ -1,3 +1,4 @@
+using BLL;
 using DAL.Db;
 using Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -30,8 +31,8 @@ namespace UsersRewardsWeb
             var config = configurationBuilder.Build();
             var connectionString = config["ConnectionString"];
 
-            services.AddTransient<IUserDAO>(x => new UserDbDAO(connectionString));
-            services.AddTransient<IRewardDAO>(x => new RewardDbDAO(connectionString));
+            services.AddTransient<IUserBL>(x => new UserBL(new UserDbDAO(connectionString)));
+            services.AddTransient<IRewardBL>(x =>new RewardBL(new RewardDbDAO(connectionString)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

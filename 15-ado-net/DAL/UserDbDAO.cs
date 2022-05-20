@@ -15,7 +15,24 @@ namespace DAL.Db
         {
             this.connectionString = connectionString;
         }
-        public void Add(User user)
+        public User Get(int id)
+        {
+            var user = new User();
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand("GetUser", connection))
+            {
+                connection.Open();
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("Id", SqlDbType.Int).Value = id;
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    user = new User(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetDateTime(3));
+                }
+                return user;
+            }
+        }
+        public int Add(User user)
         {
             using (var connection = new SqlConnection(connectionString))
             using (var command = new SqlCommand("AddUser", connection))
@@ -25,7 +42,8 @@ namespace DAL.Db
                 command.Parameters.Add("FirstName", SqlDbType.NVarChar).Value = user.FirstName;
                 command.Parameters.Add("LastName", SqlDbType.NVarChar).Value = user.LastName;
                 command.Parameters.Add("Birthdate", SqlDbType.Date).Value = user.Birthdate;
-                command.ExecuteNonQuery();
+
+                return Convert.ToInt32(command.ExecuteScalar());
             }
         }
         public void Remove(User user)

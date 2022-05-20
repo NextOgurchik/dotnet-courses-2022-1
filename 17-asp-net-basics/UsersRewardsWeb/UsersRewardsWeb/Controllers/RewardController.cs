@@ -10,28 +10,28 @@ namespace UsersRewardsWeb.Controllers
 {
     public class RewardController : Controller
     {
-        private readonly IRewardDAO rewardDAO;
-        public RewardController(IRewardDAO rewardDAO)
+        private readonly IRewardBL rewardBL;
+        public RewardController(IRewardBL rewardBL)
         {
-            this.rewardDAO = rewardDAO;
+            this.rewardBL = rewardBL;
         }
         public IActionResult Index()
         {
-            var rewards = rewardDAO.GetAll();
+            var rewards = rewardBL.GetAll();
 
             return View(rewards);
         }
         [HttpPost]
         public IActionResult Remove(int id)
         {
-            var reward = rewardDAO.GetAll().First(x => x.Id == id);
-            rewardDAO.Remove(reward);
+            var reward = rewardBL.Get(id);
+            rewardBL.Remove(reward);
             return RedirectToAction("Index");
         }
         [HttpGet]
         public IActionResult Update(int id)
         {
-            var reward = rewardDAO.GetAll().First(x => x.Id == id);
+            var reward = rewardBL.Get(id);
             var rewardViewModel = new RewardViewModel(reward);
             return View(rewardViewModel);
         }
@@ -48,7 +48,7 @@ namespace UsersRewardsWeb.Controllers
                 Title = reward.Title,
                 Description = reward.Description
             };
-            rewardDAO.Update(rewardToUpdate);
+            rewardBL.Update(rewardToUpdate);
             return RedirectToAction("Index");
         }
         [HttpGet]
@@ -70,7 +70,7 @@ namespace UsersRewardsWeb.Controllers
                 Description = reward.Description
             };
 
-            rewardDAO.Add(rewardToUpdate);
+            rewardBL.Add(rewardToUpdate);
             return RedirectToAction("Index");
         }
     }

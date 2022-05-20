@@ -11,37 +11,37 @@ namespace UsersRewardsWeb.Controllers
 {
     public class UserController : Controller
     {
-        private readonly IUserDAO userDAO;
-        private readonly IRewardDAO rewardDAO;
-        public UserController(IUserDAO userDAO, IRewardDAO rewardDAO)
+        private readonly IUserBL userBL;
+        private readonly IRewardBL rewardBL;
+        public UserController(IUserBL userBL, IRewardBL rewardBL)
         {
-            this.userDAO = userDAO;
-            this.rewardDAO = rewardDAO;
+            this.userBL = userBL;
+            this.rewardBL = rewardBL;
         }
         public IActionResult Index()
         {
-            var users = userDAO.GetAll();
+            var users = userBL.GetAll();
             return View(users);
         }
         [HttpPost]
         public IActionResult Remove(int id)
         {
-            var user = userDAO.GetAll().First(x => x.Id == id);
-            userDAO.Remove(user);
+            var user = userBL.Get(id);
+            userBL.Remove(user);
             return RedirectToAction("Index");
         }
         [HttpGet]
         public IActionResult Update(int id)
         {
-            var user = userDAO.GetAll().First(x => x.Id == id);
+            var user = userBL.Get(id);
             var userViewModel = new UserViewModel()
             {
                 Id = user.Id,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Birthdate = user.Birthdate,
-                ListReward = user.ListReward,
-                Rewards = rewardDAO.GetAll()
+                ListReward = userBL.GetAll().First(x => x.Id == user.Id).ListReward,
+                Rewards = rewardBL.GetAll()
             };
 
             return View(userViewModel);
@@ -51,19 +51,19 @@ namespace UsersRewardsWeb.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var oldUser = userDAO.GetAll().First(x => x.Id == user.Id);
+                var oldUser = userBL.Get(user.Id);
                 var userViewModel = new UserViewModel()
                 {
                     Id = oldUser.Id,
                     FirstName = oldUser.FirstName,
                     LastName = oldUser.LastName,
                     Birthdate = oldUser.Birthdate,
-                    ListReward = oldUser.ListReward,
-                    Rewards = rewardDAO.GetAll()
+                    ListReward = userBL.GetAll().First(x => x.Id == user.Id).ListReward,
+                    Rewards = rewardBL.GetAll()
                 };
                 return View(userViewModel);
             }
-            var rewards = rewardDAO.GetAll();
+            var rewards = rewardBL.GetAll();
 
             var userToUpdate = new User
             {
@@ -71,9 +71,9 @@ namespace UsersRewardsWeb.Controllers
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Birthdate = user.Birthdate,
-                ListReward = userDAO.GetAll().OrderByDescending(u => u.Id).First().ListReward
+                ListReward = userBL.GetAll().First(x => x.Id == user.Id).ListReward
             };
-            userDAO.Update(userToUpdate);
+            userBL.Update(userToUpdate);
             for (int i = 0; i < rewards.Count; i++)
             {
                 bool isAwarded = false;
@@ -86,11 +86,11 @@ namespace UsersRewardsWeb.Controllers
                 }
                 if (isAwarded)
                 {
-                    userDAO.AddReward(userToUpdate, rewards[i]);
+                    userBL.AddReward(userToUpdate, rewards[i]);
                 }
                 else
                 {
-                    userDAO.RemoveReward(userToUpdate, rewards[i]);
+                    userBL.RemoveReward(userToUpdate, rewards[i]);
                 }
             }
             return RedirectToAction("Index");
@@ -98,7 +98,7 @@ namespace UsersRewardsWeb.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            var userViewModel = new UserViewModel(new User(), rewardDAO.GetAll());
+            var userViewModel = new UserViewModel(new User(), rewardBL.GetAll());
 
             return View(userViewModel);
         }
@@ -109,11 +109,11 @@ namespace UsersRewardsWeb.Controllers
             {
                 var userViewModel = new UserViewModel()
                 {
-                    Rewards = rewardDAO.GetAll()
+                    Rewards = rewardBL.GetAll()
                 };
                 return View(userViewModel);
             }
-            var rewards = rewardDAO.GetAll();
+            var rewards = rewardBL.GetAll();
 
             var userToUpdate = new User
             {
@@ -123,14 +123,14 @@ namespace UsersRewardsWeb.Controllers
                 Birthdate = user.Birthdate,
                 ListReward = new List<Reward>()
             };
-            userDAO.Add(userToUpdate);
+            var id = userBL.Add(userToUpdate);
             for (int i = 0; i < rewards.Count; i++)
             {
                 for (int j = 0; j < userAwarded.Count; j++)
                 {
                     if (rewards[i].Id == Convert.ToInt32(userAwarded[j]))
                     {
-                        userDAO.AddReward(userDAO.GetAll().OrderByDescending(u => u.Id).First(), rewards[i]);
+                        userBL.AddReward(userBL.Get(id), rewards[i]);
                     }
                 }
             }

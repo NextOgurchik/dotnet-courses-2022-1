@@ -9,6 +9,8 @@ CREATE PROCEDURE GetUserRewards(@id INT) AS
 
 CREATE PROCEDURE AddUser(@FirstName NVARCHAR(50), @LastName NVARCHAR(50), @Birthdate DATE) AS
 	INSERT INTO Users(FirstName, LastName, Birthdate) VALUES (@FirstName, @LastName, @Birthdate)
+	DECLARE @Id INT = SCOPE_IDENTITY();
+    SELECT * FROM Users WHERE ID = @Id
 
 CREATE PROCEDURE DeleteUser(@id INT) AS
 	DELETE FROM UsersRewards WHERE UserId = @id
@@ -19,10 +21,15 @@ CREATE PROCEDURE UpdateUser(@id INT, @FirstName NVARCHAR(50), @LastName NVARCHAR
 	UPDATE Users SET LastName = @LastName WHERE id = @id
 	UPDATE Users SET Birthdate = @Birthdate WHERE id = @id 
 
+CREATE PROCEDURE GetReward (@id INT) AS
+	SELECT * FROM Rewards WHERE ID = @Id
+
 
 
 CREATE PROCEDURE AddReward(@Title NVARCHAR(50), @Description NVARCHAR(250)) AS
 	INSERT INTO Rewards(Title, Description) VALUES (@Title, @Description)
+	DECLARE @Id INT = SCOPE_IDENTITY();
+    SELECT * FROM Rewards WHERE ID = @Id[dbo].[AddUser]
 
 CREATE PROCEDURE DeleteReward(@id INT) AS
 	DELETE FROM UsersRewards WHERE RewardId = @Id
