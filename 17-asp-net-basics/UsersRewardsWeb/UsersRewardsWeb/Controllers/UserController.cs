@@ -9,11 +9,11 @@ using UsersRewardsWeb.Models;
 
 namespace UsersRewardsWeb.Controllers
 {
-    public class UserController : Controller
+    public class LoginController : Controller
     {
         private readonly IUserBL userBL;
         private readonly IRewardBL rewardBL;
-        public UserController(IUserBL userBL, IRewardBL rewardBL)
+        public LoginController(IUserBL userBL, IRewardBL rewardBL)
         {
             this.userBL = userBL;
             this.rewardBL = rewardBL;

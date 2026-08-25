@@ -3,13 +3,12 @@ using DAL.Db;
 using Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using UsersRewardsWeb.DAL;
 
 namespace UsersRewardsWeb
 {
@@ -22,20 +21,39 @@ namespace UsersRewardsWeb
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // ==================== CONFIGURE SERVICES ====================
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            // Ñòðîêà ïîäêëþ÷åíèÿ
             var configurationBuilder = new ConfigurationBuilder();
             configurationBuilder.AddJsonFile("appsettings.json");
             var config = configurationBuilder.Build();
             var connectionString = config["ConnectionString"];
 
+            // ========== Ðåãèñòðàöèÿ ñóùåñòâóþùèõ DAO è BLL ==========
             services.AddTransient<IUserBL>(x => new UserBL(new UserDbDAO(connectionString)));
-            services.AddTransient<IRewardBL>(x =>new RewardBL(new RewardDbDAO(connectionString)));
+            services.AddTransient<IRewardBL>(x => new RewardBL(new RewardDbDAO(connectionString)));
+
+            // ========== ÐÅÃÈÑÒÐÀÖÈß ÄËß ACCOUNT ==========
+            services.AddTransient<IAccountDAO>(x => new AccountDbDAO(connectionString));
+            services.AddTransient<IAccountBL, AccountBL>();
+
+            // ========== ÑÅÑÑÈÈ ==========
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
+            // ========== ÄËß ÄÎÑÒÓÏÀ Ê ÑÅÑÑÈÈ Â ÊÎÍÒÐÎËËÅÐÀÕ ==========
+            services.AddHttpContextAccessor();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // ==================== CONFIGURE ====================
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -46,9 +64,13 @@ namespace UsersRewardsWeb
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            // ========== ÂÀÆÍÎ: ÑÅÑÑÈÈ ÄÎ UseAuthorization ==========
+            app.UseSession();
 
             app.UseAuthorization();
 
@@ -56,7 +78,7 @@ namespace UsersRewardsWeb
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=User}/{action=Index}");
+                    pattern: "{controller=Account}/{action=Login}/{id?}");
             });
         }
     }

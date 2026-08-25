@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Entities;
 using Interfaces;
-using System.Linq;
 using System;
 using System.Data.SqlClient;
 using System.Data;
@@ -62,7 +61,7 @@ namespace DAL.Db
             var listUser = new List<User>();
 
             using (var connection = new SqlConnection(connectionString))
-            using (var command = new SqlCommand("SELECT Id, [FirstName], [LastName], [Birthdate] FROM dbo.Users", connection))
+            using (var command = new SqlCommand("SELECT Id, [FirstName], [LastName], [Birthdate] FROM [MSSQLLocalDB].dbo.Users", connection))
             {
                 connection.Open();
                 var reader = command.ExecuteReader();
@@ -77,10 +76,10 @@ namespace DAL.Db
             for (int i = 0; i < listUser.Count; i++)
             {
                 using (var connection = new SqlConnection(connectionString))
-                using (var command = new SqlCommand("GetUserRewards", connection))
+                using (var command = new SqlCommand("SELECT  u.ID AS UserId, u.[FirstName] AS FirstName,u.[LastName] AS LastName,u.Birthdate,r.ID AS RewardId,r.Title AS RewardTitle,r.Description AS RewardDescription FROM [MSSQLLocalDB].dbo.Users u  LEFT JOIN [MSSQLLocalDB].dbo.UsersRewards ur ON u.ID = ur.UserId  LEFT JOIN [MSSQLLocalDB].dbo.Rewards r ON ur.RewardId = r.ID   ORDER BY u.[LastName], u.[FirstName], r.Title;", connection))
                 {
                     connection.Open();
-                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandType = CommandType.Text;
                     command.Parameters.Add("id", SqlDbType.Int).Value = listUser[i].Id;
 
                     var reader = command.ExecuteReader();

@@ -1,0 +1,73 @@
+﻿@model UsersRewardsWeb.Models.RegisterViewModel
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<h2>Регистрация</h2>
+
+<!-- ========== УВЕДОМЛЕНИЕ ОБ ОШИБКЕ (если есть) ========== -->
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="border-left: 5px solid #dc3545; background-color: #f8d7da;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 2rem;">❌</span>
+            <div>
+                <strong style="font-size: 1.1rem;">Ошибка регистрации!</strong>
+                <p style="margin: 0; color: #721c24;">@TempData["ErrorMessage"]</p>
+            </div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<!-- ========== ФОРМА РЕГИСТРАЦИИ ========== -->
+<form asp-action="Register" method="post">
+    @Html.AntiForgeryToken()
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Username" class="form-label"></label>
+        <input asp-for="Username" class="form-control" placeholder="Только латиница и цифры, 3-20 символов" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" type="email" placeholder="example@mail.ru" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" class="form-control" type="password" placeholder="Минимум 6 символов (буквы + цифры)" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="ConfirmPassword" class="form-label"></label>
+        <input asp-for="ConfirmPassword" class="form-control" type="password" placeholder="Повторите пароль" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="CaptchaAnswer" class="form-label"></label>
+        <div style="display: flex; align-items: center; gap: 15px; background: #f8f9fa; padding: 10px; border-radius: 5px; border: 1px solid #ddd;">
+            <strong style="font-size: 1.2rem;">@Model.CaptchaExpression</strong>
+            <input asp-for="CaptchaAnswer" class="form-control" style="width: 100px; display: inline-block;" placeholder="Ответ" />
+        </div>
+        <span asp-validation-for="CaptchaAnswer" class="text-danger"></span>
+        <input type="hidden" asp-for="CaptchaResult" />
+        <input type="hidden" asp-for="CaptchaExpression" />
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Зарегистрироваться</button>
+</form>
+
+<div class="mt-3 text-center">
+    Уже есть аккаунт? <a asp-action="Login">Войти</a>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

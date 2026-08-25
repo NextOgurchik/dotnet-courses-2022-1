@@ -87,7 +87,7 @@ namespace DAL.Db
         {
             var listReward = new List<Reward>();
             using (var connection = new SqlConnection(connectionString))
-            using (var command = new SqlCommand("SELECT Id, [Title], [Description] from dbo.Rewards", connection))
+            using (var command = new SqlCommand("SELECT Id, [Title], [Description] from [MSSQLLocalDB].dbo.Rewards", connection))
             {
                 connection.Open();
                 var reader = command.ExecuteReader();
