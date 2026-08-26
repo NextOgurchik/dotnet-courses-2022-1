@@ -33,7 +33,7 @@ namespace UsersRewardsWeb.Models
         [Display(Name = "Капча")]
         public string CaptchaAnswer { get; set; }
 
-        // Служебные поля для капчи
+        // ЭТИ ПОЛЯ МЫ БУДЕМ ПЕРЕДАВАТЬ ЯВНО, А НЕ ЧЕРЕЗ asp-for
         public string CaptchaExpression { get; set; }
         public int CaptchaResult { get; set; }
     }

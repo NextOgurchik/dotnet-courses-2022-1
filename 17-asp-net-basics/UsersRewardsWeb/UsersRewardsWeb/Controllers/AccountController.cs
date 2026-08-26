@@ -32,17 +32,14 @@ namespace UsersRewardsWeb.Controllers
 
         // ==================== REGISTER (POST) ====================
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
-            // ============================================================
-            // 1. ПРОВЕРКА КАПЧИ
-            // ============================================================
+            // Проверяем капчу
             if (!_accountBL.IsCaptchaValid(model.CaptchaAnswer, model.CaptchaResult))
             {
                 ModelState.AddModelError("CaptchaAnswer", "Неверный ответ капчи");
 
-            
+                // Генерируем НОВУЮ капчу
                 var (expression, result) = _accountBL.GenerateCaptcha();
                 model.CaptchaExpression = expression;
                 model.CaptchaResult = result;
@@ -51,12 +48,9 @@ namespace UsersRewardsWeb.Controllers
                 return View(model);
             }
 
-            // ============================================================
-            // 2. ПРОВЕРКА MODELSTATE (пароль, подтверждение и т.д.)
-            // ============================================================
+            // Проверяем ModelState
             if (!ModelState.IsValid)
             {
- 
                 var (expression, result) = _accountBL.GenerateCaptcha();
                 model.CaptchaExpression = expression;
                 model.CaptchaResult = result;
@@ -65,14 +59,11 @@ namespace UsersRewardsWeb.Controllers
                 return View(model);
             }
 
-            // ============================================================
-            // 3. ПРОВЕРКА УНИКАЛЬНОСТИ ИМЕНИ
-            // ============================================================
+            // Проверяем уникальность имени
             if (await _accountBL.IsUsernameExistsAsync(model.Username))
             {
                 ModelState.AddModelError("Username", "Пользователь с таким именем уже существует");
 
-
                 var (expression, result) = _accountBL.GenerateCaptcha();
                 model.CaptchaExpression = expression;
                 model.CaptchaResult = result;
@@ -81,14 +72,11 @@ namespace UsersRewardsWeb.Controllers
                 return View(model);
             }
 
-            // ============================================================
-            // 4. ПРОВЕРКА УНИКАЛЬНОСТИ EMAIL
-            // ============================================================
+            // Проверяем уникальность email
             if (await _accountBL.IsEmailExistsAsync(model.Email))
             {
                 ModelState.AddModelError("Email", "Пользователь с таким email уже зарегистрирован");
 
-          
                 var (expression, result) = _accountBL.GenerateCaptcha();
                 model.CaptchaExpression = expression;
                 model.CaptchaResult = result;
@@ -97,37 +85,17 @@ namespace UsersRewardsWeb.Controllers
                 return View(model);
             }
 
-            // ============================================================
-            // 5. РЕГИСТРАЦИЯ
-            // ============================================================
+            // Регистрируем
             try
             {
                 await _accountBL.RegisterAsync(model.Username, model.Email, model.Password);
-
                 TempData["SuccessMessage"] = "Регистрация успешна! Войдите в систему.";
                 return RedirectToAction("Login");
             }
-            catch (InvalidOperationException ex)
-            {
-                ModelState.AddModelError("", ex.Message);
-
-              
-                var (expression, result) = _accountBL.GenerateCaptcha();
-                model.CaptchaExpression = expression;
-                model.CaptchaResult = result;
-                model.CaptchaAnswer = string.Empty;
-
-                return View(model);
-            }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", $"Ошибка: {ex.Message}");
-                if (ex.InnerException != null)
-                {
-                    ModelState.AddModelError("", $"Внутренняя ошибка: {ex.InnerException.Message}");
-                }
+                ModelState.AddModelError("", "Ошибка регистрации: " + ex.Message);
 
-              
                 var (expression, result) = _accountBL.GenerateCaptcha();
                 model.CaptchaExpression = expression;
                 model.CaptchaResult = result;
@@ -137,7 +105,7 @@ namespace UsersRewardsWeb.Controllers
             }
         }
 
-        // ==================== LOGIN (GET) ====================
+        // ==================== LOGIN ====================
         [HttpGet]
         public IActionResult Login()
         {
@@ -148,45 +116,35 @@ namespace UsersRewardsWeb.Controllers
             return View();
         }
 
-        // ==================== LOGIN (POST) ====================
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
-            try
+            if (!ModelState.IsValid)
             {
-                if (!ModelState.IsValid)
-                {
-                    return View(model);
-                }
-
-                var account = await _accountBL.LoginAsync(model.Username, model.Password);
-
-                if (account == null)
-                {
-                    ModelState.AddModelError("", "Неверное имя пользователя или пароль");
-                    return View(model);
-                }
-
-                _httpContextAccessor.HttpContext.Session.SetString("UserId", account.Id.ToString());
-                _httpContextAccessor.HttpContext.Session.SetString("Username", account.Username);
-
-                if (model.RememberMe)
-                {
-                    Response.Cookies.Append("Username", account.Username, new CookieOptions
-                    {
-                        Expires = DateTime.Now.AddDays(30),
-                        HttpOnly = true
-                    });
-                }
-
-                return RedirectToAction("Index", "Home");
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", $"Ошибка при входе: {ex.Message}");
                 return View(model);
             }
+
+            var account = await _accountBL.LoginAsync(model.Username, model.Password);
+
+            if (account == null)
+            {
+                ModelState.AddModelError("", "Неверное имя пользователя или пароль");
+                return View(model);
+            }
+
+            _httpContextAccessor.HttpContext.Session.SetString("UserId", account.Id.ToString());
+            _httpContextAccessor.HttpContext.Session.SetString("Username", account.Username);
+
+            if (model.RememberMe)
+            {
+                Response.Cookies.Append("Username", account.Username, new CookieOptions
+                {
+                    Expires = DateTime.Now.AddDays(30),
+                    HttpOnly = true
+                });
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 
         // ==================== LOGOUT ====================
@@ -198,7 +156,7 @@ namespace UsersRewardsWeb.Controllers
             return RedirectToAction("Login");
         }
 
-        // ==================== ОБНОВЛЕНИЕ КАПЧИ (AJAX) ====================
+        // ==================== ОБНОВЛЕНИЕ КАПЧИ ====================
         [HttpGet]
         public IActionResult RefreshCaptcha()
         {
